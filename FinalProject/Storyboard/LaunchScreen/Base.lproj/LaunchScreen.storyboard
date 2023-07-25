@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rws-5L-jcG">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoApp" translatesAutoresizingMaskIntoConstraints="NO" id="10O-z4-9dP">
+                                <rect key="frame" x="123.66666666666669" y="330" width="181" height="181"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="10O-z4-9dP" secondAttribute="height" multiplier="1:1" id="Y1c-o5-UHZ"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoLabel" translatesAutoresizingMaskIntoConstraints="NO" id="zTL-55-WgU">
+                                <rect key="frame" x="-61" y="536" width="550" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="rPL-9c-aM6"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="upv-hu-gq4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="zTL-55-WgU" secondAttribute="bottom" constant="350" id="AxU-zH-EpS"/>
+                            <constraint firstItem="10O-z4-9dP" firstAttribute="centerX" secondItem="upv-hu-gq4" secondAttribute="centerX" id="NDr-U3-ddM"/>
+                            <constraint firstItem="zTL-55-WgU" firstAttribute="centerX" secondItem="upv-hu-gq4" secondAttribute="centerX" id="Ocd-Rf-V17"/>
+                            <constraint firstItem="10O-z4-9dP" firstAttribute="top" secondItem="Rws-5L-jcG" secondAttribute="top" constant="330" id="Oxz-ns-DYr"/>
+                            <constraint firstItem="zTL-55-WgU" firstAttribute="top" secondItem="10O-z4-9dP" secondAttribute="bottom" constant="25" id="xAc-iu-zRM"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LogoLabel" width="550" height="82"/>
+        <image name="logoApp" width="1024" height="1024"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
