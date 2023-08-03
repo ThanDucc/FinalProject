@@ -26,6 +26,8 @@ class SettingScreenController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lbVersionGetJsonData.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getData)))
 
         setupUI()
     }
@@ -69,4 +71,61 @@ class SettingScreenController: UIViewController {
         enableNoti = !enableNoti
     }
     
+    
+    @IBOutlet weak var lbVersionGetJsonData: UILabel!
+    public static var fullWardInHanoi: [String] = []
+}
+
+extension SettingScreenController {
+    
+    @objc func getData() {
+        getFullWardInHanoi()
+        
+        for i in SettingScreenController.fullWardInHanoi {
+            getDataFromURL(string: i.convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 1, maxArea: 1000)
+        }
+        
+        let desktopPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = desktopPath.appendingPathComponent("postList.json")
+
+        let posts: [POST] = PostData.shared.postdata
+
+        writePostsToJSON(posts: posts, filePath: filePath)
+    }
+    
+    func getFullWardInHanoi() {
+        for j in 0..<GetFullAddress.fullAddress![1].districts.count {
+            for k in 0..<GetFullAddress.fullAddress![1].districts[j].wards.count {
+                SettingScreenController.fullWardInHanoi.append(GetFullAddress.fullAddress![1].districts[j].wards[k].p + " " + GetFullAddress.fullAddress![1].districts[j].wards[k].name)
+            }
+        }
+    }
+    
+    func getDataFromURL(string: String, minPrice: Double, maxPrice: Double, minArea: Double, maxArea: Double) {
+        
+        let url = URL(string: Constant.originURL + string)
+        let url2 = URL(string: Constant.originURL + string + "/p2")
+        
+        if let url = url, let url2 = url2 {
+            PostData.shared.fetchDataFromWebsite(url: url, url2: url2, minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea) { _ in
+            }
+        } else {
+            print("Wrong url!")
+        }
+        
+    }
+    
+    func writePostsToJSON(posts: [POST], filePath: URL) {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+
+        do {
+            let jsonData = try encoder.encode(posts)
+            try jsonData.write(to: filePath)
+            print("JSON file saved successfully.")
+        } catch {
+            print("Error while writing JSON file: \(error)")
+        }
+    }
+
 }

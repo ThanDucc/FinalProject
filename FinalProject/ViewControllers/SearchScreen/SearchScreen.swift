@@ -28,6 +28,16 @@ class SearchScreen: UIViewController {
     var indexDistric = 0
     var indexWard = 0
     
+    var indexPriceFilter = -1
+    
+    var indexAreaFilter = -1
+    
+    var minPrice = 0.0
+    var maxPrice = 1000.0
+    var minArea = 0.0
+    var maxArea = 1000.0
+    
+    var arrayOfTuples: [(min: Double, max: Double)] = [(0, 1), (1, 3), (3, 5), (5, 10), (10, 1000)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,9 +96,113 @@ class SearchScreen: UIViewController {
         openMenu(menu: menu) { index in
             switch index {
             case 0:
-                return
+                let priceFilterView = Bundle.main.loadNibNamed("PriceFilterView", owner: self, options: nil)?.first as! PriceFilterView
+                            
+                priceFilterView.frame = CGRect(x: menu.rect.minX - 75, y: menu.rect.minY, width: 250, height: 275)
+                
+                priceFilterView.index = self.indexPriceFilter
+                
+                priceFilterView.cancel = { [self] in
+                    self.indexPriceFilter = -1
+                    minPrice = 0
+                    maxPrice = 1000
+                }
+                
+                priceFilterView.chooseFilter = { [self] tupple in
+                    switch tupple.min {
+                    case 0: indexPriceFilter = 0
+                    case 1: indexPriceFilter = 1
+                    case 3: indexPriceFilter = 2
+                    case 5: indexPriceFilter = 3
+                    default: indexPriceFilter = 4
+                    }
+                    
+                    minPrice = tupple.min
+                    maxPrice = tupple.max
+                    
+                    if tfSearchMovie.text != "" {
+                        for i in GetFullAddress.fullWardToCheck {
+                            if i.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
+                                getDataFromURL(string: i.convertToURLString(), minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea)
+                                return
+                            }
+                        }
+                        
+                        for i in Constant.fullDistrics {
+                            for j in i {
+                                if j.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
+                                    getDataFromURL(string: j.convertToURLString(), minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea)
+                                    return
+                                }
+                            }
+                        }
+                        
+                        for i in Constant.fullCities {
+                            if i.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
+                                getDataFromURL(string: i.convertToURLString(), minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea)
+                                return
+                            }
+                        }
+                        
+                        label.text = "Không tìm thấy kết quả"
+                    }
+                }
+                self.view.addSubview(priceFilterView)
+                
             case 1:
-                return
+                let areaFilterView = Bundle.main.loadNibNamed("AreaFilterView", owner: self, options: nil)?.first as! AreaFilterView
+                            
+                areaFilterView.frame = CGRect(x: menu.rect.minX - 75, y: menu.rect.minY, width: 250, height: 275)
+                
+                areaFilterView.index = self.indexAreaFilter
+                
+                areaFilterView.cancel = { [self] in
+                    self.indexAreaFilter = -1
+                    minArea = 0
+                    maxArea = 1000
+                }
+                
+                areaFilterView.chooseFilter = { [self] tupple in
+                    switch tupple.min {
+                    case 0: indexAreaFilter = 0
+                    case 20: indexAreaFilter = 1
+                    case 30: indexAreaFilter = 2
+                    case 40: indexAreaFilter = 3
+                    default: indexAreaFilter = 4
+                    }
+                    
+                    minArea = tupple.min
+                    maxArea = tupple.max
+                    
+                    if tfSearchMovie.text != "" {
+                        for i in GetFullAddress.fullWardToCheck {
+                            if i.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
+                                getDataFromURL(string: i.convertToURLString(), minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea)
+                                return
+                            }
+                        }
+                        
+                        for i in Constant.fullDistrics {
+                            for j in i {
+                                if j.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
+                                    getDataFromURL(string: j.convertToURLString(), minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea)
+                                    return
+                                }
+                            }
+                        }
+                        
+                        for i in Constant.fullCities {
+                            if i.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
+                                getDataFromURL(string: i.convertToURLString(), minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea)
+                                return
+                            }
+                        }
+                        
+                        label.text = "Không tìm thấy kết quả"
+                    }
+                }
+                
+                self.view.addSubview(areaFilterView)
             default:
                 menu.close(true)
             }
@@ -181,17 +295,19 @@ class SearchScreen: UIViewController {
         menu.close(true)
         buttonDone.removeFromSuperview()
         
+        indexPriceFilter = -1
+        
         if indexWard != 0 {
             tfSearchMovie.text = fullWards[indexWard]
-            getDataFromURL(string: fullWards[indexWard].convertToURLString())
+            getDataFromURL(string: fullWards[indexWard].convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
         } else {
             if indexDistric != 0 {
                 tfSearchMovie.text = Constant.fullDistrics[indexCity][indexDistric]
-                getDataFromURL(string: Constant.fullDistrics[indexCity][indexDistric].convertToURLString())
+                getDataFromURL(string: Constant.fullDistrics[indexCity][indexDistric].convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
             } else {
                 if indexCity != 0 {
                     tfSearchMovie.text = Constant.fullCities[indexCity]
-                    getDataFromURL(string: Constant.fullCities[indexCity].convertToURLString())
+                    getDataFromURL(string: Constant.fullCities[indexCity].convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
                 }
             }
         }
@@ -203,22 +319,31 @@ class SearchScreen: UIViewController {
         label.text = "Nhập tên tỉnh, thành phố, quận, huyện hoặc xã, phường, thị trấn"
     }
     
-    func getDataFromURL(string: String) {
+    func getDataFromURL(string: String, minPrice: Double, maxPrice: Double, minArea: Double, maxArea: Double) {
+        tbLayout.isHidden = true
         // case certainly have data
         loadingIndicator.isHidden = false
         loadingIndicator.startAnimating()
         
         let url = URL(string: Constant.originURL + string)
+        let url2 = URL(string: Constant.originURL + string + "/p2")
         
-        if let url = url {
+        if let url = url, let url2 = url2 {
             DispatchQueue.global().async {
-                PostData.shared.fetchDataFromWebsite(url: url) { result in
+                PostData.shared.fetchDataFromWebsite(url: url, url2: url2, minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea) { result in
                     if result {
                         DispatchQueue.main.async { [self] in
                             loadingIndicator.isHidden = true
                             loadingIndicator.stopAnimating()
                             tbLayout.isHidden = false
                             tbLayout.reloadData()
+                        }
+                    } else {
+                        DispatchQueue.main.async { [self] in
+                            loadingIndicator.isHidden = true
+                            loadingIndicator.stopAnimating()
+                            self.label.text = "Không tìm thấy kết quả"
+                            tbLayout.isHidden = true
                         }
                     }
                 }
@@ -234,10 +359,12 @@ class SearchScreen: UIViewController {
 extension SearchScreen: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        indexPriceFilter = -1
+        
         if tfSearchMovie.text != "" {
             for i in GetFullAddress.fullWardToCheck {
                 if i.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
-                    getDataFromURL(string: i.convertToURLString())
+                    getDataFromURL(string: i.convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
                     textField.resignFirstResponder()
                     return true
                 }
@@ -246,7 +373,7 @@ extension SearchScreen: UITextFieldDelegate {
             for i in Constant.fullDistrics {
                 for j in i {
                     if j.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
-                        getDataFromURL(string: j.convertToURLString())
+                        getDataFromURL(string: j.convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
                         textField.resignFirstResponder()
                         return true
                     }
@@ -255,7 +382,7 @@ extension SearchScreen: UITextFieldDelegate {
             
             for i in Constant.fullCities {
                 if i.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
-                    getDataFromURL(string: i.convertToURLString())
+                    getDataFromURL(string: i.convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
                     textField.resignFirstResponder()
                     return true
                 }
