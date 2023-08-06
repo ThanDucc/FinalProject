@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JQs-7a-UIq">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Library Screen-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="LibraryScreen" customModule="FinalProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BÀI ĐĂNG CỦA BẠN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgV-SV-hyx">
+                                <rect key="frame" x="16" y="104" width="171.5" height="21.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d4c-12-OiQ">
+                                <rect key="frame" x="16" y="137.5" width="382" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="its-ZN-78X"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="12" minimumInteritemSpacing="10" id="Ch5-h2-ebu">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BÀI ĐĂNG ĐÃ LƯU" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0a-G5-xqZ">
+                                <rect key="frame" x="16" y="349.5" width="157" height="21.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rUT-Xc-TOJ">
+                                <rect key="frame" x="0.0" y="375" width="414" height="438"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="n0a-G5-xqZ" firstAttribute="top" secondItem="d4c-12-OiQ" secondAttribute="bottom" constant="12" id="4Fe-7U-Ixy"/>
+                            <constraint firstItem="n0a-G5-xqZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="CH5-hS-Jyz"/>
+                            <constraint firstItem="YgV-SV-hyx" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="MNc-Zv-eJ8"/>
+                            <constraint firstItem="rUT-Xc-TOJ" firstAttribute="top" secondItem="n0a-G5-xqZ" secondAttribute="bottom" constant="4" id="PeN-00-ggR"/>
+                            <constraint firstItem="rUT-Xc-TOJ" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="SDN-Jx-Z42"/>
+                            <constraint firstItem="rUT-Xc-TOJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="a5V-lI-aux"/>
+                            <constraint firstItem="d4c-12-OiQ" firstAttribute="leading" secondItem="YgV-SV-hyx" secondAttribute="leading" id="q7U-8s-AVE"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rUT-Xc-TOJ" secondAttribute="trailing" id="uoQ-EF-ib7"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="d4c-12-OiQ" secondAttribute="trailing" constant="16" id="uwK-ER-WSF"/>
+                            <constraint firstItem="d4c-12-OiQ" firstAttribute="top" secondItem="YgV-SV-hyx" secondAttribute="bottom" constant="12" id="whj-TU-rc9"/>
+                            <constraint firstItem="YgV-SV-hyx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="yEJ-dE-9SK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qq1-Ac-LHO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="clMyPost" destination="d4c-12-OiQ" id="LYl-xM-rcW"/>
+                        <outlet property="heightConstraintCollection" destination="its-ZN-78X" id="5Nm-uX-vlU"/>
+                        <outlet property="tbMyPost" destination="rUT-Xc-TOJ" id="6WC-xK-3hf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="700" y="-89.0625"/>
+        </scene>
+        <!--Thư viện-->
+        <scene sceneID="1Hd-8y-ID8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JQs-7a-UIq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Thư viện" image="folder.circle" catalog="system" selectedImage="folder.circle.fill" id="XaK-Q8-hqe"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tXd-d2-AIu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="szm-l4-DQO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hvy-aX-HXf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-210.1449275362319" y="-89.0625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="folder.circle" catalog="system" width="128" height="121"/>
+        <image name="folder.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

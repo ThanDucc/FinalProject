@@ -33,7 +33,7 @@
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pa1-Nm-Py4">
                                         <rect key="frame" x="51" y="8" width="242" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="tfEnterringToSearch:" destination="2bh-Fs-izX" eventType="editingChanged" id="5Qc-OB-FKx"/>
@@ -60,16 +60,10 @@
                                     <constraint firstAttribute="bottom" secondItem="tov-rr-qSf" secondAttribute="bottom" constant="11" id="xMn-7s-fKJ"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QyW-D2-e1t">
-                                <rect key="frame" x="40" y="174" width="295" height="44"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Nhập tên tỉnh, thành phố, quận, huyện hoặc xã, phường, thị trấn">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="system" size="15"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="8" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nhập tên tỉnh, thành phố, quận, huyện hoặc xã, phường, thị trấn" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QyW-D2-e1t">
+                                <rect key="frame" x="40" y="169" width="295" height="33.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ian-fx-SE1">
@@ -91,7 +85,7 @@
                             <constraint firstItem="HQJ-7I-TbH" firstAttribute="centerY" secondItem="JYN-an-x69" secondAttribute="centerY" id="d05-S2-jXN"/>
                             <constraint firstAttribute="trailing" secondItem="QyW-D2-e1t" secondAttribute="trailing" constant="40" id="iPL-rQ-gPg"/>
                             <constraint firstItem="Ian-fx-SE1" firstAttribute="top" secondItem="Rzf-XQ-3Uk" secondAttribute="bottom" constant="16" id="icw-gy-Wxf"/>
-                            <constraint firstItem="QyW-D2-e1t" firstAttribute="top" secondItem="Rzf-XQ-3Uk" secondAttribute="bottom" constant="40" id="uwE-mh-l0D"/>
+                            <constraint firstItem="QyW-D2-e1t" firstAttribute="top" secondItem="Rzf-XQ-3Uk" secondAttribute="bottom" constant="35" id="uwE-mh-l0D"/>
                             <constraint firstItem="Rzf-XQ-3Uk" firstAttribute="leading" secondItem="pa2-0m-JF0" secondAttribute="leading" constant="16" id="v15-Z9-8te"/>
                             <constraint firstItem="pa2-0m-JF0" firstAttribute="trailing" secondItem="Ian-fx-SE1" secondAttribute="trailing" id="w3w-WQ-UW7"/>
                             <constraint firstItem="Ian-fx-SE1" firstAttribute="leading" secondItem="pa2-0m-JF0" secondAttribute="leading" id="x3L-8T-nAF"/>

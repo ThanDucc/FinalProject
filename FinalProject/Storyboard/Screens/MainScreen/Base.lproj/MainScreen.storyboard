@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bmw-js-Xjr">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -9,7 +10,7 @@
         <!--Main Screen-->
         <scene sceneID="V4b-1L-7ph">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="bmw-js-Xjr" customClass="MainScreen" customModule="RoomFinder" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="bmw-js-Xjr" customClass="MainScreen" customModule="FinalProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9wj-ga-FLW">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -52,20 +53,20 @@
             </objects>
             <point key="canvasLocation" x="837" y="-128"/>
         </scene>
-        <!--MessageScreen-->
+        <!--PostScreen-->
         <scene sceneID="b0f-0h-Eh1">
             <objects>
-                <viewControllerPlaceholder storyboardName="MessageScreen" id="8Rc-mK-xdO" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="PostScreen" id="8Rc-mK-xdO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="5C2-Me-MLa"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sC-KT-Y9g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="850" y="-42"/>
         </scene>
-        <!--SavedScreen-->
+        <!--LibraryScreen-->
         <scene sceneID="WgR-fr-sHi">
             <objects>
-                <viewControllerPlaceholder storyboardName="SavedScreen" id="ac7-R4-D7m" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="LibraryScreen" id="ac7-R4-D7m" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="wth-rD-9zf"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DKu-wY-GeQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

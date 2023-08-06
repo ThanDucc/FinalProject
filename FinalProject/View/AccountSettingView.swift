@@ -21,6 +21,13 @@ class AccountSettingView: UIViewController {
 
         setupUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        MainScreen.tabbar?.tabBar.isHidden = false
+    }
 
     private func setupUI() {
         let tabBarController = MainScreen.tabbar
@@ -47,6 +54,22 @@ class AccountSettingView: UIViewController {
     
     @objc func dismissView(_ gesture: UITapGestureRecognizer) {
         self.dismiss(animated: true)
+    }
+    
+    @IBAction func btnLogoutClicked(_ sender: Any) {
+        let alert = UIAlertController(title: "Đăng xuất", message: "Bạn có chắc muốn đăng xuất không?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler: { _ in
+            MainScreen.hasAccount = false
+            self.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Huỷ bỏ", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func btnUpdateInforClicked(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "UpdateInformationView", bundle: nil)
+        let updateScreen = storyboard.instantiateViewController(withIdentifier: "UpdateInformationView")
+        self.navigationController?.pushViewController(updateScreen, animated: true)
     }
     
 }

@@ -11,7 +11,7 @@
         <!--Account Setting View-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="AccountSettingView" id="Y6W-OH-hqX" customClass="AccountSettingView" customModule="FinalProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="AccountSettingView" customModule="FinalProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qzj-Ot-ibU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,12 +53,15 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="zIu-pz-eHH"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Quản lý tài khoản của bạn">
+                                        <state key="normal" title="Cập nhật thông tin tài khoản">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnUpdateInforClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qiO-M5-7UF"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k5S-IG-pLn" userLabel="Separator">
                                         <rect key="frame" x="0.0" y="185.5" width="382" height="1"/>
@@ -99,6 +102,9 @@
                                         <state key="normal" title="Đăng xuất">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnLogoutClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jCc-k8-9aR"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvn-OE-o4J">
                                         <rect key="frame" x="204" y="289.5" width="99" height="28"/>
@@ -182,6 +188,7 @@
                             <constraint firstItem="Xs4-oR-EEe" firstAttribute="trailing" secondItem="jPN-DW-ufy" secondAttribute="trailing" constant="16" id="yBU-Az-zff"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="cFn-t2-lDm"/>
                     <connections>
                         <outlet property="btnManageAccount" destination="dgV-zs-0y3" id="T6w-VK-75b"/>
                         <outlet property="customView" destination="jPN-DW-ufy" id="cwq-d2-Ofb"/>
@@ -193,7 +200,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="997" y="-35"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zPZ-LI-K00">
+            <objects>
+                <navigationController storyboardIdentifier="AccountSettingView" automaticallyAdjustsScrollViewInsets="NO" id="2fy-6I-MbW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dOg-tH-cjz">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="cKl-wc-cZW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Hj-i8-yAn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="303" y="-35"/>
         </scene>
     </scenes>
     <resources>

@@ -12,6 +12,17 @@ class MainScreen: UITabBarController {
     @IBOutlet weak var mTabbar: UITabBar!
     public static var tabbar: UITabBarController?
     
+    public static var hasAccount = false {
+        didSet {
+            if hasAccount {
+                NotificationCenter.default.post(name: Notification.Name("HadAccount"), object: nil)
+            } else {
+                NotificationCenter.default.post(name: Notification.Name("HadNotAccount"), object: nil)
+            }
+//            UserDefaults.standard.set(hasAccount, forKey: "hasAccount")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mTabbar.unselectedItemTintColor = .label.withAlphaComponent(0.5)
@@ -28,6 +39,8 @@ class MainScreen: UITabBarController {
         }
         setNeedsStatusBarAppearanceUpdate()
         MainScreen.tabbar = self
+        
+        MainScreen.hasAccount = UserDefaults.standard.bool(forKey: "hasAccount")
         
     }
 

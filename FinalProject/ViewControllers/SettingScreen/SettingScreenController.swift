@@ -14,6 +14,9 @@ class SettingScreenController: UIViewController {
     @IBOutlet weak var settingTheme: UIView!
     @IBOutlet weak var lbTheme: UILabel!
     
+    @IBOutlet weak var viewAccount: UIView!
+    @IBOutlet weak var heightConstraintAccountSetting: NSLayoutConstraint!
+    
     private var enableNoti = false {
         didSet {
             if enableNoti {
@@ -28,11 +31,28 @@ class SettingScreenController: UIViewController {
         super.viewDidLoad()
         
         lbVersionGetJsonData.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getData)))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification), name: Notification.Name("HadAccount"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification), name: Notification.Name("HadNotAccount"), object: nil)
 
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        MainScreen.tabbar?.tabBar.isHidden = false
+    }
+    
+    @objc func handleNotification() {
+        check()
+    }
+    
     private func setupUI() {
+        
+        check()
     
         settingTheme.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseThemeClicked(_:))))
         settingTheme.isUserInteractionEnabled = true
@@ -42,6 +62,17 @@ class SettingScreenController: UIViewController {
         enableNotiCheckbox.setBackgroundImage(UIImage(named: "checkbox_unchecked")?.withTintColor(.label), for: .normal)
         
         changeTheme()
+    }
+    
+    func check() {
+        if MainScreen.hasAccount {
+            heightConstraintAccountSetting.constant = 175
+            viewAccount.isHidden = false
+        } else {
+            heightConstraintAccountSetting.constant = 0
+            viewAccount.isHidden = true
+        }
+        view.layoutIfNeeded()
     }
     
     func changeTheme() {
@@ -69,6 +100,12 @@ class SettingScreenController: UIViewController {
 
     @IBAction func btnEnableNotiClicked(_ sender: Any) {
         enableNoti = !enableNoti
+    }
+    
+    @IBAction func btnUpdateInforClicked(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "UpdateInformationView", bundle: nil)
+        let updateScreen = storyboard.instantiateViewController(withIdentifier: "UpdateInformationView")
+        self.navigationController?.pushViewController(updateScreen, animated: true)
     }
     
     

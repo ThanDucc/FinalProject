@@ -15,6 +15,9 @@ class PostData {
     
     var postData: [Post] = []
     
+    var newestData: [Post] = []
+    
+    
     var postdata: [POST] = []
     
     func fetchDataFromWebsite(url: URL, url2: URL, minPrice: Double, maxPrice: Double, minArea: Double, maxArea: Double, completion: @escaping (Bool) -> Void) {
@@ -45,10 +48,12 @@ class PostData {
                         if let url = URL(string: image) {
                             if let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) {
                                 postData.append(Post(title: title, price: price, area: area, address: location, dateTime: time, image: image, linkDetail: fullLink, productId: productId))
+                                newestData.append(Post(title: title, price: price, area: area, address: location, dateTime: time, image: image, linkDetail: fullLink, productId: productId))
                                 postdata.append(POST(title: title, price: price, area: area, address: location, dateTime: time, linkDetail: fullLink, productId: productId))
                             }
                         } else {
                             postData.append(Post(title: title, price: price, area: area, address: location, dateTime: time, image: UIImage(named: "noImg")!, linkDetail: fullLink, productId: productId))
+                            newestData.append(Post(title: title, price: price, area: area, address: location, dateTime: time, image: UIImage(named: "noImg")!, linkDetail: fullLink, productId: productId))
                             postdata.append(POST(title: title, price: price, area: area, address: location, dateTime: time, linkDetail: fullLink, productId: productId))
                         }
                     }
@@ -80,17 +85,20 @@ class PostData {
                         if let url = URL(string: image) {
                             if let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) {
                                 postData.append(Post(title: title, price: price, area: area, address: location, dateTime: time, image: image, linkDetail: fullLink, productId: productId))
+                                newestData.append(Post(title: title, price: price, area: area, address: location, dateTime: time, image: image, linkDetail: fullLink, productId: productId))
                                 postdata.append(POST(title: title, price: price, area: area, address: location, dateTime: time, linkDetail: fullLink, productId: productId))
                             }
                         } else {
                             postData.append(Post(title: title, price: price, area: area, address: location, dateTime: time, image: UIImage(named: "noImg")!, linkDetail: fullLink, productId: productId))
+                            newestData.append(Post(title: title, price: price, area: area, address: location, dateTime: time, image: UIImage(named: "noImg")!, linkDetail: fullLink, productId: productId))
                             postdata.append(POST(title: title, price: price, area: area, address: location, dateTime: time, linkDetail: fullLink, productId: productId))
                         }
                     }
-
-                    completion(true)
                 }
             }
+            
+            completion(true)
+            
         } catch {
             print("Error parsing HTML: \(error)")
             completion(false)

@@ -58,6 +58,9 @@ class PostDetailScreen: UIViewController {
                             collectionImages.dataSource = self
                             collectionImages.reloadData()
                             
+                            indicator.stopAnimating()
+                            indicator.isHidden = true
+                            
                             PostDetailData.shared.getImage(urls: PostDetailData.shared.postDetailData?.linkImagesDetail ?? []) { result in
                                 if result {
                                     DispatchQueue.main.async {
@@ -128,11 +131,23 @@ class PostDetailScreen: UIViewController {
     @IBAction func btnCallClicked(_ sender: Any) {
         let phoneNumber = PostDetailData.shared.contactInfor?.phoneNumber
         
-        if let phoneCallURL = URL(string: "tel://\(String(describing: phoneNumber))") {
+        if let phoneCallURL = URL(string: "tel://\(phoneNumber ?? "")") {
             if UIApplication.shared.canOpenURL(phoneCallURL) {
                 UIApplication.shared.open(phoneCallURL, options: [:], completionHandler: nil)
             }
         }
+    }
+    
+    @IBAction func btnMessageClicked(_ sender: Any) {
+        let phoneNumber = PostDetailData.shared.contactInfor?.phoneNumber
+        
+        if let url = URL(string: "sms:\(phoneNumber ?? "")") {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    print("Không thể mở ứng dụng Messages.")
+                }
+            }
     }
     
 }

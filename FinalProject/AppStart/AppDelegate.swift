@@ -9,6 +9,32 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    func getDataFromURL(string: String, minPrice: Double, maxPrice: Double, minArea: Double, maxArea: Double) {
+        
+        let url = URL(string: Constant.originURL + string)
+        let url2 = URL(string: Constant.originURL + string + "/p2")
+        
+        if let url = url, let url2 = url2 {
+            DispatchQueue.global().async {
+                PostData.shared.fetchDataFromWebsite(url: url, url2: url2, minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea) { result in
+                    if result {
+                        DispatchQueue.main.async {
+                            PostData.shared.postData.removeAll()
+                            NotificationCenter.default.post(name: Notification.Name("load newest successful"), object: nil, userInfo: ["MyBoolValue": true])
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            PostData.shared.postData.removeAll()
+                            NotificationCenter.default.post(name: Notification.Name("load newest successful"), object: nil, userInfo: ["MyBoolValue": false])
+                        }
+                    }
+                }
+            }
+        } else {
+            print("Wrong url!")
+        }
+    }
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -31,6 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 Constant.fullDistrics = GetFullAddress().readArrayFromFile(fileURL: url) ?? []
             }
         }
+        
+        getDataFromURL(string: "ha-noi?sortValue=1", minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
         
         return true
     }

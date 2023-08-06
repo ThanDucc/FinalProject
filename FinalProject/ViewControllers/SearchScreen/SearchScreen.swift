@@ -84,6 +84,17 @@ class SearchScreen: UIViewController {
         
         tbLayout.isHidden = true
         
+        let attributedText = NSMutableAttributedString(string: "Nhập tên tỉnh, thành phố, quận, huyện hoặc xã, phường, thị trấn")
+        attributedText.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: attributedText.length))
+        attributedText.addAttribute(.font, value: UIFont.systemFont(ofSize: 14, weight: .medium), range: NSRange(location: 0, length: attributedText.length))
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 8
+        paragraphStyle.alignment = .center
+        attributedText.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
+        
+        label.attributedText = attributedText
+        
     }
     
     @objc func notificationThemeChange() {
