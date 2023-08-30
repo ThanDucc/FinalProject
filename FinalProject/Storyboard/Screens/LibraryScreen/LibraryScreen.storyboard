@@ -21,11 +21,17 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bạn chưa đăng bài nào" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQ6-rk-SoY">
+                                <rect key="frame" x="129" y="155.5" width="156.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d4c-12-OiQ">
-                                <rect key="frame" x="16" y="137.5" width="382" height="200"/>
+                                <rect key="frame" x="16" y="137.5" width="382" height="300"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="its-ZN-78X"/>
+                                    <constraint firstAttribute="height" constant="300" id="its-ZN-78X"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="12" minimumInteritemSpacing="10" id="Ch5-h2-ebu">
                                     <size key="itemSize" width="128" height="128"/>
@@ -36,24 +42,34 @@
                                 <cells/>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BÀI ĐĂNG ĐÃ LƯU" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0a-G5-xqZ">
-                                <rect key="frame" x="16" y="349.5" width="157" height="21.5"/>
+                                <rect key="frame" x="16" y="203.5" width="157" height="21.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bạn chưa lưu bài đăng nào" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sr9-YH-dGr">
+                                <rect key="frame" x="116.5" y="255" width="181.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rUT-Xc-TOJ">
-                                <rect key="frame" x="0.0" y="375" width="414" height="438"/>
+                                <rect key="frame" x="0.0" y="229" width="414" height="584"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="n0a-G5-xqZ" firstAttribute="top" secondItem="d4c-12-OiQ" secondAttribute="bottom" constant="12" id="4Fe-7U-Ixy"/>
+                            <constraint firstItem="n0a-G5-xqZ" firstAttribute="top" secondItem="QQ6-rk-SoY" secondAttribute="bottom" constant="30" id="4Fe-7U-Ixy"/>
                             <constraint firstItem="n0a-G5-xqZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="CH5-hS-Jyz"/>
+                            <constraint firstItem="QQ6-rk-SoY" firstAttribute="top" secondItem="YgV-SV-hyx" secondAttribute="bottom" constant="30" id="FQu-lg-Dwc"/>
+                            <constraint firstItem="sr9-YH-dGr" firstAttribute="top" secondItem="n0a-G5-xqZ" secondAttribute="bottom" constant="30" id="FS6-W7-MTY"/>
+                            <constraint firstItem="QQ6-rk-SoY" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="Lhf-q2-fE2"/>
                             <constraint firstItem="YgV-SV-hyx" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="MNc-Zv-eJ8"/>
                             <constraint firstItem="rUT-Xc-TOJ" firstAttribute="top" secondItem="n0a-G5-xqZ" secondAttribute="bottom" constant="4" id="PeN-00-ggR"/>
                             <constraint firstItem="rUT-Xc-TOJ" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="SDN-Jx-Z42"/>
                             <constraint firstItem="rUT-Xc-TOJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="a5V-lI-aux"/>
+                            <constraint firstItem="sr9-YH-dGr" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="fi5-pp-U86"/>
                             <constraint firstItem="d4c-12-OiQ" firstAttribute="leading" secondItem="YgV-SV-hyx" secondAttribute="leading" id="q7U-8s-AVE"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rUT-Xc-TOJ" secondAttribute="trailing" id="uoQ-EF-ib7"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="d4c-12-OiQ" secondAttribute="trailing" constant="16" id="uwK-ER-WSF"/>
@@ -65,13 +81,14 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="clMyPost" destination="d4c-12-OiQ" id="LYl-xM-rcW"/>
+                        <outlet property="heightConstraint" destination="4Fe-7U-Ixy" id="wSQ-cj-QGL"/>
                         <outlet property="heightConstraintCollection" destination="its-ZN-78X" id="5Nm-uX-vlU"/>
-                        <outlet property="tbMyPost" destination="rUT-Xc-TOJ" id="6WC-xK-3hf"/>
+                        <outlet property="tbPostSaved" destination="rUT-Xc-TOJ" id="6WC-xK-3hf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="700" y="-89.0625"/>
+            <point key="canvasLocation" x="698.55072463768124" y="-89.0625"/>
         </scene>
         <!--Thư viện-->
         <scene sceneID="1Hd-8y-ID8">

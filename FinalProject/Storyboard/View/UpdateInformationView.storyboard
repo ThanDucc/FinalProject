@@ -197,7 +197,16 @@
                                     </backgroundConfiguration>
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="15"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="btnDone:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jCj-dy-ymW"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVM-ht-aGx">
+                                <rect key="frame" x="207" y="716.5" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -223,6 +232,7 @@
                             <constraint firstItem="cuA-Qe-ScX" firstAttribute="leading" secondItem="e8e-tr-Rca" secondAttribute="leading" id="LU3-TO-1mh"/>
                             <constraint firstItem="blX-wO-e8V" firstAttribute="centerY" secondItem="12p-HG-d0w" secondAttribute="centerY" id="MAB-vB-Xch"/>
                             <constraint firstItem="IXV-f4-uu1" firstAttribute="leading" secondItem="e8e-tr-Rca" secondAttribute="leading" id="MmB-La-MNy"/>
+                            <constraint firstItem="FVM-ht-aGx" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="O70-w7-T0Q"/>
                             <constraint firstItem="Tzu-dg-kBx" firstAttribute="leading" secondItem="NgQ-fs-q3y" secondAttribute="trailing" constant="4" id="Pd4-ZS-qC6"/>
                             <constraint firstItem="12p-HG-d0w" firstAttribute="leading" secondItem="ZZR-VZ-eDn" secondAttribute="trailing" constant="12" id="PpH-Bd-9K3"/>
                             <constraint firstItem="12p-HG-d0w" firstAttribute="top" secondItem="djL-kJ-PFo" secondAttribute="bottom" constant="12" id="RQE-Tc-EQz"/>
@@ -239,6 +249,7 @@
                             <constraint firstItem="qiq-ae-s2z" firstAttribute="leading" secondItem="e8e-tr-Rca" secondAttribute="leading" id="c9Z-FQ-HKH"/>
                             <constraint firstItem="XVW-D6-BcC" firstAttribute="top" secondItem="e8e-tr-Rca" secondAttribute="bottom" constant="25" id="cdM-yg-4Nn"/>
                             <constraint firstItem="kfA-v1-DmH" firstAttribute="centerY" secondItem="Tzu-dg-kBx" secondAttribute="centerY" id="dSb-k2-JGd"/>
+                            <constraint firstItem="FVM-ht-aGx" firstAttribute="top" secondItem="SMO-A6-8uT" secondAttribute="bottom" constant="25" id="f5t-m1-qmH"/>
                             <constraint firstItem="dhE-71-Zel" firstAttribute="leading" secondItem="4EP-2q-JaU" secondAttribute="trailing" constant="12" id="itQ-zs-SuN"/>
                             <constraint firstItem="e8e-tr-Rca" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="l9W-gT-nD2"/>
                             <constraint firstItem="Xzo-cl-OVG" firstAttribute="top" secondItem="vIn-xi-y5S" secondAttribute="bottom" constant="12" id="lsn-QN-DRx"/>
@@ -260,6 +271,7 @@
                     </view>
                     <connections>
                         <outlet property="imgAddPhoto" destination="dOz-YX-DxM" id="Iex-ai-qlo"/>
+                        <outlet property="label" destination="FVM-ht-aGx" id="zVp-ay-ssn"/>
                         <outlet property="lbArea" destination="Yee-g7-bnb" id="zjJ-0K-pBy"/>
                         <outlet property="tfAddress" destination="z2X-eI-XDr" id="jdK-AM-Jxr"/>
                         <outlet property="tfBirthOfDate" destination="vIn-xi-y5S" id="P1p-1h-f74"/>
@@ -282,6 +294,9 @@
         <image name="add_photo" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

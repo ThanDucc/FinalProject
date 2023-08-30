@@ -127,7 +127,7 @@
                         <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
                     </buttonConfiguration>
                     <connections>
-                        <action selector="btnDoneClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="tIa-sO-xSE"/>
+                        <action selector="btnCancelClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="clm-9k-hLo"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FmL-Nr-uxd">
@@ -137,7 +137,7 @@
                         <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
                     </buttonConfiguration>
                     <connections>
-                        <action selector="btnCancelClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="Dcu-5D-J5M"/>
+                        <action selector="btnFiltClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="oUC-Oc-8Xv"/>
                     </connections>
                 </button>
             </subviews>

@@ -92,7 +92,7 @@ extension HomeScreen: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             cell.lbPrice.text = PostData.shared.newestData[indexPath.row].price
             cell.lbAddress.text = PostData.shared.newestData[indexPath.row].address
             cell.lbDateTime.text = PostData.shared.newestData[indexPath.row].dateTime
-            cell.img.image = PostData.shared.newestData[indexPath.row].image
+//            cell.img.image = PostData.shared.newestData[indexPath.row].image
             
             return cell
         } else {

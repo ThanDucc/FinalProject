@@ -169,6 +169,9 @@
                                                                         <color key="tintColor" systemColor="labelColor"/>
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         <state key="normal" backgroundImage="bookmark" catalog="system"/>
+                                                                        <connections>
+                                                                            <action selector="btnSavedClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="LHp-da-XMC"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -274,8 +277,8 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thông tin mô tả" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVq-6u-33k">
-                                                        <rect key="frame" x="46" y="198" width="108" height="18"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <rect key="frame" x="46" y="198" width="112" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -292,8 +295,8 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Người đăng phòng:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndP-dp-uNq">
-                                                        <rect key="frame" x="16" y="272" width="131.66666666666666" height="18"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <rect key="frame" x="16" y="272" width="139.66666666666666" height="18"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -454,7 +457,22 @@
                                         <color key="strokeColor" systemColor="labelColor"/>
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="btnRemoveClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="w6T-Ym-T6a"/>
+                                </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chỉnh sửa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aW-kI-H8B">
+                                <rect key="frame" x="103.33333333333334" y="867" width="68.333333333333343" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Xoá bài" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uHE-cW-IfK">
+                                <rect key="frame" x="274" y="867" width="50.666666666666686" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -466,8 +484,12 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="OaM-Cp-Tev" secondAttribute="trailing" id="JON-3a-eq9"/>
                             <constraint firstItem="8wE-sb-xKW" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="KXm-BZ-fXA"/>
                             <constraint firstItem="OaM-Cp-Tev" firstAttribute="top" secondItem="NjD-gN-21i" secondAttribute="bottom" id="M6j-pd-g9W"/>
+                            <constraint firstItem="9aW-kI-H8B" firstAttribute="centerY" secondItem="WKl-fE-ybR" secondAttribute="centerY" id="M88-tq-P95"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="WKl-fE-ybR" secondAttribute="bottom" id="O5j-ZB-The"/>
+                            <constraint firstItem="oIo-08-dVe" firstAttribute="leading" secondItem="uHE-cW-IfK" secondAttribute="trailing" constant="16" id="Og9-wn-1RP"/>
+                            <constraint firstItem="9aW-kI-H8B" firstAttribute="leading" secondItem="WKl-fE-ybR" secondAttribute="trailing" constant="16" id="OkQ-hZ-iEu"/>
                             <constraint firstItem="oIo-08-dVe" firstAttribute="centerY" secondItem="WKl-fE-ybR" secondAttribute="centerY" id="ROm-0S-dIn"/>
+                            <constraint firstItem="uHE-cW-IfK" firstAttribute="centerY" secondItem="oIo-08-dVe" secondAttribute="centerY" id="SMe-ty-imJ"/>
                             <constraint firstItem="oIo-08-dVe" firstAttribute="width" secondItem="8wE-sb-xKW" secondAttribute="width" id="W2Q-3z-f4s"/>
                             <constraint firstItem="8wE-sb-xKW" firstAttribute="width" secondItem="WKl-fE-ybR" secondAttribute="width" id="YO3-FR-mjd"/>
                             <constraint firstItem="WKl-fE-ybR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="afN-Jv-aJh"/>
@@ -485,15 +507,21 @@
                     <connections>
                         <outlet property="addressDetail" destination="lPB-OK-kKn" id="AaV-1f-MpO"/>
                         <outlet property="areaDetail" destination="um1-EK-gHT" id="l9J-w2-iMt"/>
+                        <outlet property="btnCall" destination="8wE-sb-xKW" id="u2J-dh-ZRc"/>
+                        <outlet property="btnMess" destination="WKl-fE-ybR" id="Dr4-zR-oee"/>
+                        <outlet property="btnReport" destination="oIo-08-dVe" id="XEg-bb-CkN"/>
+                        <outlet property="btnSaved" destination="u1k-2N-c1t" id="lzw-qY-RXT"/>
                         <outlet property="collectionImages" destination="Tfq-00-ODL" id="Lvh-QT-0Go"/>
                         <outlet property="descriptionDetail" destination="BWe-ug-7dL" id="wX1-RL-2l0"/>
                         <outlet property="expirationDate" destination="a8o-PK-ach" id="tnS-SI-YOW"/>
                         <outlet property="imagePlay" destination="SY6-Hb-Utl" id="q9p-gJ-g9w"/>
                         <outlet property="indicator" destination="5vc-M4-fFb" id="LtD-iV-5MK"/>
                         <outlet property="largeImage" destination="dwg-nU-CMT" id="rim-2K-C6P"/>
+                        <outlet property="lbEdit" destination="9aW-kI-H8B" id="nZJ-3Y-e0r"/>
                         <outlet property="lbGmail" destination="hCv-gw-QVh" id="aUJ-9T-0Gr"/>
                         <outlet property="lbName" destination="SJt-PE-CTC" id="eMv-nf-fSQ"/>
                         <outlet property="lbPhoneNumber" destination="TRg-QM-pbK" id="4Lb-cy-9hb"/>
+                        <outlet property="lnRemove" destination="uHE-cW-IfK" id="lHf-qU-zwr"/>
                         <outlet property="postDate" destination="Zgd-cK-44f" id="rud-Pb-vqA"/>
                         <outlet property="priceDetail" destination="VWk-B3-0Q7" id="l9W-7J-kBI"/>
                         <outlet property="titleDetail" destination="DQS-Ne-Jw8" id="oX1-w1-8uZ"/>

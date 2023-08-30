@@ -9,7 +9,7 @@ import Foundation
 
 class PostDetail {
     
-    internal init(linkImagesDetail: [String] = [], titleDetail: String, addressDetail: String, priceDetail: String, areaDetail: String, descriptionDetail: String, postDate: String, expirationDate: String, postCode: String) {
+    internal init(linkImagesDetail: [String] = [], titleDetail: String, addressDetail: String, priceDetail: String, areaDetail: String, descriptionDetail: String, postDate: String, expirationDate: String, productId: String) {
         self.linkImagesDetail = linkImagesDetail
         self.titleDetail = titleDetail
         self.addressDetail = addressDetail
@@ -18,7 +18,7 @@ class PostDetail {
         self.descriptionDetail = descriptionDetail
         self.postDate = postDate
         self.expirationDate = expirationDate
-        self.postCode = postCode
+        self.productId = productId
     }
     
     var linkImagesDetail: [String] = []
@@ -29,6 +29,6 @@ class PostDetail {
     var descriptionDetail: String
     var postDate: String
     var expirationDate: String
-    var postCode: String
+    var productId: String
     
 }

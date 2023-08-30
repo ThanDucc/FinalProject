@@ -80,8 +80,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miracle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kl3-bv-RvH">
-                                                        <rect key="frame" x="0.0" y="64" width="43.5" height="16"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kl3-bv-RvH">
+                                                        <rect key="frame" x="0.0" y="64" width="35.5" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -99,8 +99,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miracle@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyi-R5-cci">
-                                                        <rect key="frame" x="0.0" y="140" width="117" height="16"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyi-R5-cci">
+                                                        <rect key="frame" x="0.0" y="140" width="32" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -301,6 +301,8 @@
                         <outlet property="enableNotiCheckbox" destination="ka7-e5-6Cr" id="RaF-0P-H6p"/>
                         <outlet property="heightConstraintAccountSetting" destination="vgY-sM-53a" id="aDL-EK-wri"/>
                         <outlet property="lbChooseTheme" destination="0I6-c2-SyH" id="dT1-aJ-TY6"/>
+                        <outlet property="lbEmail" destination="fyi-R5-cci" id="MpC-13-cu2"/>
+                        <outlet property="lbName" destination="Kl3-bv-RvH" id="dEA-As-7W7"/>
                         <outlet property="lbTheme" destination="n9f-rR-Qvh" id="Ylu-MJ-GE2"/>
                         <outlet property="lbVersionGetJsonData" destination="an5-3Q-1RY" id="QDV-eX-JNu"/>
                         <outlet property="settingTheme" destination="qaj-JQ-ACg" id="I6P-gO-1FN"/>

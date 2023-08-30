@@ -34,7 +34,7 @@ class AreaFilterView: UIView {
         }
     }
     
-    var arrayOfTuples: [(min: Double, max: Double)] = [(0, 20), (20, 30), (30, 40), (40, 60), (60, 1000)]
+    var arrayOfTuples: [(min: Int, max: Int)] = [(0, 20), (20, 30), (30, 40), (40, 60), (60, 1000)]
     
     required override init(frame: CGRect) {
         super.init(frame: frame)
@@ -98,17 +98,17 @@ class AreaFilterView: UIView {
         }
     }
     
+    var chooseFilter: (((min: Int, max: Int)) -> Void)?
+    
     var cancel: (() -> Void)?
     
-    var chooseFilter: (((min: Double, max: Double)) -> Void)?
-    
-    @IBAction func btnDoneClicked(_ sender: Any) {
+    @IBAction func btnCancelClicked(_ sender: Any) {
         cancel?()
         self.removeFromSuperview()
     }
     
 
-    @IBAction func btnCancelClicked(_ sender: Any) {
+    @IBAction func btnFiltClicked(_ sender: Any) {
         if index != -1 {
             chooseFilter?(arrayOfTuples[index])
         }

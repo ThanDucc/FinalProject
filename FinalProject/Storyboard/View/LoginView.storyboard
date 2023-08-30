@@ -29,7 +29,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập email của bạn" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xyt-05-2es">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập tên tài khoản của bạn" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xyt-05-2es">
                                         <rect key="frame" x="20" y="104.5" width="342" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Qir-57-OTU"/>
@@ -37,8 +37,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5m-O5-lgJ">
-                                        <rect key="frame" x="20" y="76.5" width="33.5" height="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên tài khoản" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5m-O5-lgJ">
+                                        <rect key="frame" x="20" y="76.5" width="83" height="16"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -148,6 +148,8 @@
                         <outlet property="customView" destination="kGs-RU-fbQ" id="SRA-th-fMe"/>
                         <outlet property="lbLoginStatus" destination="baZ-Fz-gMX" id="4LH-G8-1bE"/>
                         <outlet property="parentView" destination="UsY-wJ-jSi" id="DLD-h6-hY3"/>
+                        <outlet property="tfPassword" destination="BoS-Z0-bAJ" id="6Wu-dN-tTx"/>
+                        <outlet property="tfUsername" destination="Xyt-05-2es" id="4BN-Rc-yjW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

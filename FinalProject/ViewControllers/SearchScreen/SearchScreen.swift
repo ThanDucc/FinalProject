@@ -32,12 +32,14 @@ class SearchScreen: UIViewController {
     
     var indexAreaFilter = -1
     
-    var minPrice = 0.0
-    var maxPrice = 1000.0
-    var minArea = 0.0
-    var maxArea = 1000.0
+    var minPrice = 0
+    var maxPrice = 1000
+    var minArea = 0
+    var maxArea = 1000
     
     var arrayOfTuples: [(min: Double, max: Double)] = [(0, 1), (1, 3), (3, 5), (5, 10), (10, 1000)]
+    
+    var postData: [Post] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +66,8 @@ class SearchScreen: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         
         MainScreen.tabbar?.tabBar.isHidden = false
+        
+        tbLayout.reloadData()
     }
 
     
@@ -84,17 +88,6 @@ class SearchScreen: UIViewController {
         
         tbLayout.isHidden = true
         
-        let attributedText = NSMutableAttributedString(string: "Nhập tên tỉnh, thành phố, quận, huyện hoặc xã, phường, thị trấn")
-        attributedText.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: attributedText.length))
-        attributedText.addAttribute(.font, value: UIFont.systemFont(ofSize: 14, weight: .medium), range: NSRange(location: 0, length: attributedText.length))
-
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 8
-        paragraphStyle.alignment = .center
-        attributedText.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
-        
-        label.attributedText = attributedText
-        
     }
     
     @objc func notificationThemeChange() {
@@ -107,17 +100,11 @@ class SearchScreen: UIViewController {
         openMenu(menu: menu) { index in
             switch index {
             case 0:
-                let priceFilterView = Bundle.main.loadNibNamed("PriceFilterView", owner: self, options: nil)?.first as! PriceFilterView
+                let priceFilterView = Bundle.main.loadNibNamed("PriceFilterView", owner: self, options: nil)?.first as? PriceFilterView ?? PriceFilterView()
                             
                 priceFilterView.frame = CGRect(x: menu.rect.minX - 75, y: menu.rect.minY, width: 250, height: 275)
                 
                 priceFilterView.index = self.indexPriceFilter
-                
-                priceFilterView.cancel = { [self] in
-                    self.indexPriceFilter = -1
-                    minPrice = 0
-                    maxPrice = 1000
-                }
                 
                 priceFilterView.chooseFilter = { [self] tupple in
                     switch tupple.min {
@@ -132,46 +119,26 @@ class SearchScreen: UIViewController {
                     maxPrice = tupple.max
                     
                     if tfSearchMovie.text != "" {
-                        for i in GetFullAddress.fullWardToCheck {
-                            if i.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
-                                getDataFromURL(string: i.convertToURLString(), minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea)
-                                return
-                            }
-                        }
-                        
-                        for i in Constant.fullDistrics {
-                            for j in i {
-                                if j.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
-                                    getDataFromURL(string: j.convertToURLString(), minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea)
-                                    return
-                                }
-                            }
-                        }
-                        
-                        for i in Constant.fullCities {
-                            if i.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
-                                getDataFromURL(string: i.convertToURLString(), minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea)
-                                return
-                            }
-                        }
-                        
-                        label.text = "Không tìm thấy kết quả"
+                        getInfor()
                     }
+                }
+                
+                priceFilterView.cancel = { [self] in
+                    minPrice = 0
+                    maxPrice = 1000
+                    
+                    indexPriceFilter = -1
+                    
+                    getInfor()
                 }
                 self.view.addSubview(priceFilterView)
                 
             case 1:
-                let areaFilterView = Bundle.main.loadNibNamed("AreaFilterView", owner: self, options: nil)?.first as! AreaFilterView
+                let areaFilterView = Bundle.main.loadNibNamed("AreaFilterView", owner: self, options: nil)?.first as? AreaFilterView ?? AreaFilterView()
                             
                 areaFilterView.frame = CGRect(x: menu.rect.minX - 75, y: menu.rect.minY, width: 250, height: 275)
                 
                 areaFilterView.index = self.indexAreaFilter
-                
-                areaFilterView.cancel = { [self] in
-                    self.indexAreaFilter = -1
-                    minArea = 0
-                    maxArea = 1000
-                }
                 
                 areaFilterView.chooseFilter = { [self] tupple in
                     switch tupple.min {
@@ -186,31 +153,17 @@ class SearchScreen: UIViewController {
                     maxArea = tupple.max
                     
                     if tfSearchMovie.text != "" {
-                        for i in GetFullAddress.fullWardToCheck {
-                            if i.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
-                                getDataFromURL(string: i.convertToURLString(), minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea)
-                                return
-                            }
-                        }
-                        
-                        for i in Constant.fullDistrics {
-                            for j in i {
-                                if j.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
-                                    getDataFromURL(string: j.convertToURLString(), minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea)
-                                    return
-                                }
-                            }
-                        }
-                        
-                        for i in Constant.fullCities {
-                            if i.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
-                                getDataFromURL(string: i.convertToURLString(), minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea)
-                                return
-                            }
-                        }
-                        
-                        label.text = "Không tìm thấy kết quả"
+                        getInfor()
                     }
+                }
+                
+                areaFilterView.cancel = { [self] in
+                    minArea = 0
+                    maxArea = 1000
+                    
+                    indexAreaFilter = -1
+                    
+                    getInfor()
                 }
                 
                 self.view.addSubview(areaFilterView)
@@ -272,8 +225,7 @@ class SearchScreen: UIViewController {
                     fullWards = ["Chọn xã, phường"]
                     
                     for i in GetFullAddress.fullAddress?[indexCity-1].districts[indexDistric-1].wards ?? [] {
-                        let full = i.p + " " + i.name
-                        fullWards.append(full)
+                        fullWards.append(i.name)
                     }
                     
                     let subMenu = self.menuDropdown(fullWards, sourceView: menu.buttons[2], status: false, type: .search)
@@ -310,58 +262,70 @@ class SearchScreen: UIViewController {
         
         if indexWard != 0 {
             tfSearchMovie.text = fullWards[indexWard]
-            getDataFromURL(string: fullWards[indexWard].convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
         } else {
             if indexDistric != 0 {
                 tfSearchMovie.text = Constant.fullDistrics[indexCity][indexDistric]
-                getDataFromURL(string: Constant.fullDistrics[indexCity][indexDistric].convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
             } else {
                 if indexCity != 0 {
                     tfSearchMovie.text = Constant.fullCities[indexCity]
-                    getDataFromURL(string: Constant.fullCities[indexCity].convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
                 }
             }
         }
         
-    }
-
-    @IBAction func tfEnterringToSearch(_ sender: Any) {
-        tbLayout.isHidden = true
-        label.text = "Nhập tên tỉnh, thành phố, quận, huyện hoặc xã, phường, thị trấn"
+        getInfor()
+        
     }
     
-    func getDataFromURL(string: String, minPrice: Double, maxPrice: Double, minArea: Double, maxArea: Double) {
+    func getInfor() {
         tbLayout.isHidden = true
         // case certainly have data
         loadingIndicator.isHidden = false
         loadingIndicator.startAnimating()
         
-        let url = URL(string: Constant.originURL + string)
-        let url2 = URL(string: Constant.originURL + string + "/p2")
         
-        if let url = url, let url2 = url2 {
-            DispatchQueue.global().async {
-                PostData.shared.fetchDataFromWebsite(url: url, url2: url2, minPrice: minPrice, maxPrice: maxPrice, minArea: minArea, maxArea: maxArea) { result in
-                    if result {
+        let requestURL = URL(string: "http://192.168.1.106/final_project/getPostData.php")!
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "POST"
+        
+        let address = tfSearchMovie.text ?? ""
+        
+        let data = "address=\(address)&&min_price=\(minPrice)&&max_price=\(maxPrice)&&min_area=\(minArea)&&max_area=\(maxArea)"
+        
+        request.httpBody = data.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.uploadTask(with: request, from: request.httpBody!) { data, response, error in
+                if let response = String(data: data ?? Data(), encoding: .utf8) {
+                    switch response {
+                    case "Error":
+                        print("Lỗi kết nối, vui lòng kiểm tra lại!")
+                        
+                    default:
+                        let post = try? JSONDecoder().decode([Post].self, from: data ?? Data())
                         DispatchQueue.main.async { [self] in
-                            loadingIndicator.isHidden = true
-                            loadingIndicator.stopAnimating()
-                            tbLayout.isHidden = false
-                            tbLayout.reloadData()
-                        }
-                    } else {
-                        DispatchQueue.main.async { [self] in
-                            loadingIndicator.isHidden = true
-                            loadingIndicator.stopAnimating()
-                            self.label.text = "Không tìm thấy kết quả"
-                            tbLayout.isHidden = true
+                            postData = post ?? []
+                            
+                            if post?.isEmpty ?? false {
+                                loadingIndicator.isHidden = true
+                                loadingIndicator.stopAnimating()
+                                self.label.text = "Không tìm thấy kết quả"
+                                tbLayout.isHidden = true
+                            } else {
+                                loadingIndicator.isHidden = true
+                                loadingIndicator.stopAnimating()
+                                tbLayout.isHidden = false
+                                tbLayout.reloadData()
+                            }
                         }
                     }
                 }
-            }
-        } else {
-            print("Wrong url!")
+            
         }
+        task.resume()
+    }
+
+    @IBAction func tfEnterringToSearch(_ sender: Any) {
+        tbLayout.isHidden = true
+        label.text = "Nhập địa chỉ tìm kiếm"
         
     }
     
@@ -373,53 +337,73 @@ extension SearchScreen: UITextFieldDelegate {
         indexPriceFilter = -1
         
         if tfSearchMovie.text != "" {
-            for i in GetFullAddress.fullWardToCheck {
-                if i.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
-                    getDataFromURL(string: i.convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
-                    textField.resignFirstResponder()
-                    return true
-                }
-            }
-            
-            for i in Constant.fullDistrics {
-                for j in i {
-                    if j.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
-                        getDataFromURL(string: j.convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
-                        textField.resignFirstResponder()
-                        return true
-                    }
-                }
-            }
-            
-            for i in Constant.fullCities {
-                if i.lowercased().contains(tfSearchMovie.text?.lowercased() ?? "") {
-                    getDataFromURL(string: i.convertToURLString(), minPrice: 0, maxPrice: 1000, minArea: 0, maxArea: 1000)
-                    textField.resignFirstResponder()
-                    return true
-                }
-            }
-            
-            label.text = "Không tìm thấy kết quả"
+            getInfor()
         }
         
         textField.resignFirstResponder()
         return true
     }
+    
 }
 
 extension SearchScreen: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return PostData.shared.postData.count
+        if postData.count > 80 {
+            return 80
+        } else {
+            return postData.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
-            cell.lbTitle.text = PostData.shared.postData[indexPath.row].title
-            cell.lbArea.text = PostData.shared.postData[indexPath.row].area
-            cell.lbPrice.text = PostData.shared.postData[indexPath.row].price
-            cell.lbAddress.text = PostData.shared.postData[indexPath.row].address
-            cell.lbDateTime.text = PostData.shared.postData[indexPath.row].dateTime
-            cell.img.image = PostData.shared.postData[indexPath.row].image
+            cell.lbTitle.text = postData[indexPath.row].title
+            cell.lbArea.text = postData[indexPath.row].area
+            cell.lbPrice.text = postData[indexPath.row].price
+            cell.lbAddress.text = postData[indexPath.row].address
+            
+            let year = postData[indexPath.row].dateTime.components(separatedBy: "-")[0]
+            let month = postData[indexPath.row].dateTime.components(separatedBy: "-")[1]
+            let day = postData[indexPath.row].dateTime.components(separatedBy: "-")[2]
+            
+            let dateTime = day + "/" + month + "/" + year
+            
+            cell.lbDateTime.text = dateTime
+            
+            cell.img.image = UIImage(named: "noImg") ?? UIImage()
+                        
+            DispatchQueue.global().async { [self] in
+                if let url = URL(string: postData[indexPath.row].linkImageCover ?? ""), let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) {
+                    DispatchQueue.main.async {
+                        cell.img.image = image
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        cell.img.image = UIImage(named: "noImg") ?? UIImage()
+                    }
+                }
+            }
+            
+            checkSaved(productId: postData[indexPath.row].productId) { [self] saved in
+                postData[indexPath.row].saved = saved
+                cell.saved = postData[indexPath.row].saved
+                
+                if saved {
+                    cell.btnSaved.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+                } else {
+                    cell.btnSaved.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
+                }
+            }
+            
+            cell.productId = postData[indexPath.row].productId
+            cell.sourceViewController = self
+            cell.screen = .SearchScreen
+            
+            cell.savedClick = { [self] in
+                postData[indexPath.row].saved = !postData[indexPath.row].saved
+                cell.saved = postData[indexPath.row].saved
+            }
             
             return cell
         } else {
@@ -430,8 +414,35 @@ extension SearchScreen: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "PostDetailScreen", bundle: nil)
         let detailScreen = storyboard.instantiateViewController(withIdentifier: "PostDetailScreen") as! PostDetailScreen
-        detailScreen.url = URL(string: PostData.shared.postData[indexPath.row].linkDetail)
+        detailScreen.url = URL(string: postData[indexPath.row].linkDetail)
+        detailScreen.saved = postData[indexPath.row].saved
+        detailScreen.productId = postData[indexPath.row].productId
         self.navigationController?.pushViewController(detailScreen, animated: true)
+    }
+    
+    func checkSaved(productId: String, completion: @escaping (Bool) -> Void) {
+        let requestURL = URL(string: "http://192.168.1.106/final_project/checkSaved.php")!
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "POST"
+        
+        let data = "userId=\(Constant.userId)&&productId=\(productId)"
+        
+        request.httpBody = data.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.uploadTask(with: request, from: request.httpBody!) { data, response, error in
+                if let response = String(data: data ?? Data(), encoding: .utf8) {
+                    DispatchQueue.main.async {
+                        switch response {
+                        case "true":
+                            completion(true)
+                        default:
+                            completion(false)
+                        }
+                    }
+                }
+            
+        }
+        task.resume()
     }
     
 }

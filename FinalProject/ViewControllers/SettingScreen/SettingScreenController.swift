@@ -17,6 +17,9 @@ class SettingScreenController: UIViewController {
     @IBOutlet weak var viewAccount: UIView!
     @IBOutlet weak var heightConstraintAccountSetting: NSLayoutConstraint!
     
+    @IBOutlet weak var lbName: UILabel!
+    @IBOutlet weak var lbEmail: UILabel!
+    
     private var enableNoti = false {
         didSet {
             if enableNoti {
@@ -39,11 +42,46 @@ class SettingScreenController: UIViewController {
         setupUI()
     }
     
+    func getInfor() {
+        let requestURL = URL(string: "http://192.168.1.106/final_project/getUserInfor.php")!
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "POST"
+
+        let data = "userId=\(Constant.userId)"
+        
+        request.httpBody = data.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.uploadTask(with: request, from: request.httpBody!) { data, response, error in
+            DispatchQueue.main.async { [self] in
+                if let response = String(data: data ?? Data(), encoding: .utf8) {
+                    switch response {
+                    case "Error":
+                        print("Lỗi kết nối, vui lòng kiểm tra lại!")
+                        
+                    default:
+                        guard let data = data else { return }
+                        guard let infor = try? JSONDecoder().decode([UserInfor].self, from: data) else { return }
+                        
+                        if !infor.isEmpty {
+                            DispatchQueue.main.async {
+                                lbName.text = infor[0].name ?? "Name"
+                                lbEmail.text = infor[0].email ?? "Email"
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+        task.resume()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         
         MainScreen.tabbar?.tabBar.isHidden = false
+        getInfor()
     }
     
     @objc func handleNotification() {
@@ -124,8 +162,9 @@ extension SettingScreenController {
         
         let desktopPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let filePath = desktopPath.appendingPathComponent("postList.json")
+        print(filePath)
 
-        let posts: [POST] = PostData.shared.postdata
+        let posts: [POST] = PostData.shared.post
 
         writePostsToJSON(posts: posts, filePath: filePath)
     }

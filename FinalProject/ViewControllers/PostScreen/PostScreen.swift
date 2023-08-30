@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftSoup
 
 class PostScreen: UIViewController {
         
@@ -19,9 +20,14 @@ class PostScreen: UIViewController {
     @IBOutlet weak var tfArea: UITextField!
     @IBOutlet weak var tfExpirationDate: UITextField!
     
-    @IBOutlet weak var tfPhoneNumber: UITextField!
-    @IBOutlet weak var tfEmail: UITextField!
+    @IBOutlet weak var tfAddress: UITextField!
     @IBOutlet weak var imgAddPhoto: UIImageView!
+    
+    @IBOutlet weak var lbStatus: UILabel!
+    
+    var edit = false
+    
+    var post: Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +43,11 @@ class PostScreen: UIViewController {
         setAttributeTextView(view: tfArea)
         setAttributeTextView(view: tfPrice)
         setAttributeTextView(view: tfExpirationDate)
-        setAttributeTextView(view: tfEmail)
-        setAttributeTextView(view: tfPhoneNumber)
+        setAttributeTextView(view: tfAddress)
         
         tfArea.delegate = self
-        tfEmail.delegate = self
         tfPrice.delegate = self
-        tfPhoneNumber.delegate = self
+        tfAddress.delegate = self
         tfExpirationDate.delegate = self
         
         tvTitle.delegate = self
@@ -61,12 +65,27 @@ class PostScreen: UIViewController {
         
         tfExpirationDate.inputView = datePicker
         
+        if edit {
+            tvTitle.text = post?.title
+            tfAddress.text = post?.address
+            tfPrice.text = post?.price.components(separatedBy: " ")[0]
+            tfArea.text = post?.area.components(separatedBy: " ")[0]
+            
+            let year = post?.dateTime.components(separatedBy: "-")[0] ?? ""
+            let month = post?.dateTime.components(separatedBy: "-")[1] ?? ""
+            let day = post?.dateTime.components(separatedBy: "-")[2] ?? ""
+            
+            let dateTime = day + "/" + month + "/" + year
+            
+            tfExpirationDate.text = dateTime
+            tvDescription.text = post?.linkDetail
+        }
     }
     
     @objc func dateChange(datePicker: UIDatePicker) {
         tfExpirationDate.endEditing(true)
         let formatDate = DateFormatter()
-        formatDate.dateFormat = " dd/MM/YYYY"
+        formatDate.dateFormat = "dd/MM/YYYY"
         tfExpirationDate.text = formatDate.string(from: datePicker.date)
     }
     
@@ -84,9 +103,8 @@ class PostScreen: UIViewController {
     
     func reset() {
         tfArea.text = ""
-        tfEmail.text = ""
         tfPrice.text = ""
-        tfPhoneNumber.text = ""
+        tfAddress.text = ""
         tfExpirationDate.text = ""
         tvTitle.text = ""
         tvDescription.text = ""
@@ -113,12 +131,88 @@ class PostScreen: UIViewController {
     }
     
     @IBAction func btnCompleteClicked(_ sender: Any) {
-        let alert = UIAlertController(title: "Cảnh báo", message: "Bạn có chắc đã muốn đăng bài viết này không?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler: { _ in
-            self.reset()
-        }))
-        alert.addAction(UIAlertAction(title: "Huỷ bỏ", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        if tfAddress.text?.isEmpty ?? false || tfArea.text?.isEmpty ?? false || tfPrice.text?.isEmpty ?? false || tvTitle.text?.isEmpty ?? false || tfExpirationDate.text?.isEmpty ?? false || tvDescription.text?.isEmpty ?? false {
+            lbStatus.text = "Bạn nhập thiếu thông tin!"
+        } else {
+            lbStatus.text = ""
+            
+            let message = (!edit) ? "Bạn có chắc muốn đăng bài viết này không?" : "Bạn có chắc đã chỉnh sửa hoàn tất?"
+        
+            let alert = UIAlertController(title: "Xác nhận", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler: { [self] _ in
+                insertPost()
+                
+                if edit {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    })
+                } else {
+                    reset()
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Huỷ bỏ", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func insertPost() {
+        var requestURL = URL(string: "")
+        
+        if !edit {
+            requestURL = URL(string: "http://192.168.1.106/final_project/insertPost.php")!
+        } else {
+            requestURL = URL(string: "http://192.168.1.106/final_project/updateMyPost.php")!
+        }
+        
+        guard let requestURL = requestURL else { return }
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "POST"
+        
+        let userId = (Int)(Constant.userId) ?? 0
+        let area = (tfArea.text ?? "") + " m\u{00B2}"
+        let price = (tfPrice.text ?? "") + " triệu/tháng"
+        let address = tfAddress.text ?? ""
+        var dateTime = tfExpirationDate.text ?? ""
+        let title = tvTitle.text ?? ""
+        let linkDetail = tvDescription.text ?? ""
+        
+        let day = dateTime.components(separatedBy: "/")[0]
+        let month = dateTime.components(separatedBy: "/")[1]
+        let year = dateTime.components(separatedBy: "/")[2]
+        
+        dateTime = year + "-" + month + "-" + day
+        
+        var data = ""
+        
+        if edit {
+            data = "userId=\(userId)&&address=\(address)&&area=\(area)&&price=\(price)&&dateTime=\(dateTime)&&title=\(title)&&linkDetail=\(linkDetail)&&productId=\(post!.productId)"
+        } else {
+            data = "userId=\(userId)&&address=\(address)&&area=\(area)&&price=\(price)&&dateTime=\(dateTime)&&title=\(title)&&linkDetail=\(linkDetail)"
+        }
+        
+        request.httpBody = data.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.uploadTask(with: request, from: request.httpBody!) { data, response, error in
+            DispatchQueue.main.async { [self] in
+                if let response = String(data: data ?? Data(), encoding: .utf8) {
+                    switch response {
+                    case "Error", "Connection Error":
+                        print("Lỗi kết nối, vui lòng kiểm tra lại!")
+                        
+                    default:
+                        if !edit {
+                            lbStatus.text = "Đăng bài viết thành công!"
+                        } else {
+                            lbStatus.text = "Chỉnh sửa bài viết thành công!"
+                        }
+                        
+                    }
+                }
+            }
+            
+        }
+        task.resume()
     }
     
 }

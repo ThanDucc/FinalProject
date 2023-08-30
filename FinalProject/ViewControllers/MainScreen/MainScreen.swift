@@ -19,7 +19,7 @@ class MainScreen: UITabBarController {
             } else {
                 NotificationCenter.default.post(name: Notification.Name("HadNotAccount"), object: nil)
             }
-//            UserDefaults.standard.set(hasAccount, forKey: "hasAccount")
+            UserDefaults.standard.set(hasAccount, forKey: "hasAccount")
         }
     }
     
@@ -41,6 +41,8 @@ class MainScreen: UITabBarController {
         MainScreen.tabbar = self
         
         MainScreen.hasAccount = UserDefaults.standard.bool(forKey: "hasAccount")
+        
+        Constant.userId = UserDefaults.standard.string(forKey: "userId") ?? ""
         
     }
 

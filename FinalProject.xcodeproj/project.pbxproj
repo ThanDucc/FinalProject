@@ -12,7 +12,7 @@
 		183FF6752A7E02AB0069012B /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6742A7E02AB0069012B /* RegisterView.swift */; };
 		183FF6782A7E61AB0069012B /* PostCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FF6762A7E61AB0069012B /* PostCollectionCell.swift */; };
 		183FF6792A7E61AB0069012B /* PostCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183FF6772A7E61AB0069012B /* PostCollectionCell.xib */; };
-		1841100A2A5DA11400A7674D /* ContactInfor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184110092A5DA11400A7674D /* ContactInfor.swift */; };
+		1841100A2A5DA11400A7674D /* UserInfor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184110092A5DA11400A7674D /* UserInfor.swift */; };
 		1841100C2A5DB4EC00A7674D /* ZoomImageScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1841100B2A5DB4EC00A7674D /* ZoomImageScreen.swift */; };
 		1841100E2A5DB50700A7674D /* ZoomImageScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1841100D2A5DB50700A7674D /* ZoomImageScreen.storyboard */; };
 		1844602E2A643A750012E0CC /* ZoomImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844602C2A643A750012E0CC /* ZoomImageCell.swift */; };
@@ -79,7 +79,7 @@
 		183FF6742A7E02AB0069012B /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		183FF6762A7E61AB0069012B /* PostCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionCell.swift; sourceTree = "<group>"; };
 		183FF6772A7E61AB0069012B /* PostCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCollectionCell.xib; sourceTree = "<group>"; };
-		184110092A5DA11400A7674D /* ContactInfor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfor.swift; sourceTree = "<group>"; };
+		184110092A5DA11400A7674D /* UserInfor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfor.swift; sourceTree = "<group>"; };
 		1841100B2A5DB4EC00A7674D /* ZoomImageScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomImageScreen.swift; sourceTree = "<group>"; };
 		1841100D2A5DB50700A7674D /* ZoomImageScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ZoomImageScreen.storyboard; sourceTree = "<group>"; };
 		1844602C2A643A750012E0CC /* ZoomImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZoomImageCell.swift; path = ../Storyboard/Cells/ZoomImageCell.swift; sourceTree = "<group>"; };
@@ -254,7 +254,7 @@
 				18469E352A597EFF009ACE6A /* PostData.swift */,
 				1856D6C52A5AB8B00069586D /* PostDetail.swift */,
 				1856D6C72A5ABB270069586D /* PostDetailData.swift */,
-				184110092A5DA11400A7674D /* ContactInfor.swift */,
+				184110092A5DA11400A7674D /* UserInfor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -607,7 +607,7 @@
 				1856D6C02A5A61470069586D /* PostDetailScreen.swift in Sources */,
 				18469E072A591640009ACE6A /* MenuCell.swift in Sources */,
 				183FF6712A7DFEAB0069012B /* LoginView.swift in Sources */,
-				1841100A2A5DA11400A7674D /* ContactInfor.swift in Sources */,
+				1841100A2A5DA11400A7674D /* UserInfor.swift in Sources */,
 				18469E2E2A591640009ACE6A /* HomeScreen.swift in Sources */,
 				18469DF82A591640009ACE6A /* Constant.swift in Sources */,
 				18469E402A59BB21009ACE6A /* LoadImage.swift in Sources */,

@@ -16,10 +16,59 @@ class AccountSettingView: UIViewController {
     @IBOutlet weak var imgAddAccount: UIImageView!
     @IBOutlet weak var imgLogout: UIImageView!
     
+    @IBOutlet weak var labelName: UILabel!
+    @IBOutlet weak var lbGmail: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
+    }
+    
+    func getInfor() {
+        let requestURL = URL(string: "http://192.168.1.106/final_project/getUserInfor.php")!
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "POST"
+
+        let data = "userId=\(Constant.userId)"
+        
+        request.httpBody = data.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.uploadTask(with: request, from: request.httpBody!) { data, response, error in
+            DispatchQueue.main.async { [self] in
+                if let response = String(data: data ?? Data(), encoding: .utf8) {
+                    switch response {
+                    case "Error":
+                        print("Lỗi kết nối, vui lòng kiểm tra lại!")
+                        
+                    default:
+                        guard let data = data else { return }
+                        guard let infor = try? JSONDecoder().decode([UserInfor].self, from: data) else { return }
+                        
+                        DispatchQueue.main.async {
+                            if !infor.isEmpty {
+                                if let name = infor[0].name {
+                                    if name.isEmpty {
+                                        labelName.text = "Name"
+                                    } else {
+                                        labelName.text = name
+                                    }
+                                }
+                                if let gmail = infor[0].email {
+                                    if gmail.isEmpty {
+                                        lbGmail.text = "Gmail"
+                                    } else {
+                                        lbGmail.text = gmail
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+        task.resume()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,6 +76,8 @@ class AccountSettingView: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         
         MainScreen.tabbar?.tabBar.isHidden = false
+        
+        getInfor()
     }
 
     private func setupUI() {
@@ -60,6 +111,8 @@ class AccountSettingView: UIViewController {
         let alert = UIAlertController(title: "Đăng xuất", message: "Bạn có chắc muốn đăng xuất không?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler: { _ in
             MainScreen.hasAccount = false
+            Constant.userId = ""
+            UserDefaults.standard.set("", forKey: "userId")
             self.dismiss(animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "Huỷ bỏ", style: .default, handler: nil))

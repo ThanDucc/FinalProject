@@ -22,4 +22,6 @@ class Constant {
     
     public static let defaultFilterMenu = ["Lọc theo giá phòng", "Lọc theo diện tích", "Huỷ lọc"]
     
+    public static var userId = ""
+    
 }

@@ -14,7 +14,7 @@ class PostDetailData {
     public static var shared = PostDetailData()
     
     var postDetailData: PostDetail?
-    var contactInfor: ContactInfor?
+    var contactInfor: UserInfor?
     
     var listImage: [UIImage] = []
     
@@ -72,7 +72,7 @@ class PostDetailData {
 
             let postCode = try doc.select(".re__pr-short-info .title:contains(Mã tin)").first()?.parent()?.select("span.value").first()?.text() ?? ""
             
-            postDetailData = PostDetail(linkImagesDetail: imageArray, titleDetail: title, addressDetail: address, priceDetail: price, areaDetail: area, descriptionDetail: descriptionDetail, postDate: postDateElement, expirationDate: expirationDate, postCode: postCode)
+            postDetailData = PostDetail(linkImagesDetail: imageArray, titleDetail: title, addressDetail: address, priceDetail: price, areaDetail: area, descriptionDetail: descriptionDetail, postDate: postDateElement, expirationDate: expirationDate, productId: postCode)
             
             let sellerInfor = extractSellerInfo(from: html)
             let nameSeller = sellerInfor.name
@@ -80,7 +80,7 @@ class PostDetailData {
             let emailSeller = sellerInfor.email
             let userId = sellerInfor.userID
 
-            contactInfor = ContactInfor(name: nameSeller, phoneNumber: mobileSeller, email: emailSeller, userId: userId)
+            contactInfor = UserInfor(name: nameSeller, phone_number: mobileSeller, email: emailSeller, userId: userId)
             
             let component = html.components(separatedBy: "<iframe class=\"lazyload\" id=\"video\" width=\"840\" height=\"473\" data-src=\"")
             

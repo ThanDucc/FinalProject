@@ -195,6 +195,8 @@
                         <outlet property="imgAccount" destination="F97-5e-Ios" id="ofQ-7A-kb1"/>
                         <outlet property="imgAddAccount" destination="07Y-wX-OyT" id="Fh7-2M-cYF"/>
                         <outlet property="imgLogout" destination="D0w-gr-VqE" id="OWj-oE-76y"/>
+                        <outlet property="labelName" destination="Kqk-Yn-exU" id="86v-RU-Hj4"/>
+                        <outlet property="lbGmail" destination="KRh-z8-78l" id="dj4-x5-HPR"/>
                         <outlet property="parentView" destination="T8a-bR-tIa" id="mN4-yx-lsp"/>
                     </connections>
                 </viewController>

@@ -17,11 +17,20 @@ class PostCollectionCell: UICollectionViewCell {
     @IBOutlet weak var lbTitle: UILabel!
     
     @IBOutlet weak var lbPrice: UILabel!
+    
+    @IBOutlet weak var btnSave: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         lbTitle.font = UIFont.boldSystemFont(ofSize: lbTitle.font.pointSize)
         lbTitle.textColor = .label
     }
-
+    
+    
+    
+    @IBAction func btnSaveClicked(_ sender: Any) {
+        
+    }
+    
 }

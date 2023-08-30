@@ -119,6 +119,9 @@
                         <color key="tintColor" systemColor="labelColor"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" backgroundImage="bookmark" catalog="system"/>
+                        <connections>
+                            <action selector="btnSaved:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="G8Z-vg-oOa"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eU9-Jg-lvo">
                         <rect key="frame" x="16" y="149" width="315" height="1"/>
@@ -127,6 +130,9 @@
                             <constraint firstAttribute="height" constant="1" id="ogH-6y-dBl"/>
                         </constraints>
                     </view>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="PZs-aG-HxB">
+                        <rect key="frame" x="299.5" y="112" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="MJ3-z4-nTj" firstAttribute="leading" secondItem="gjP-Kz-Acx" secondAttribute="trailing" constant="4" id="09D-3C-DKD"/>
@@ -148,6 +154,8 @@
                     <constraint firstItem="XGC-45-IbJ" firstAttribute="centerY" secondItem="QXP-6R-byd" secondAttribute="centerY" id="abp-2G-eb9"/>
                     <constraint firstItem="Hnz-1j-AIt" firstAttribute="centerY" secondItem="QXP-6R-byd" secondAttribute="centerY" id="ajh-aI-DMV"/>
                     <constraint firstItem="HBc-pQ-bXP" firstAttribute="centerY" secondItem="y7z-oB-c4a" secondAttribute="centerY" id="boa-LN-Els"/>
+                    <constraint firstItem="PZs-aG-HxB" firstAttribute="centerX" secondItem="W86-Bt-fy6" secondAttribute="centerX" id="cp0-SN-eoc"/>
+                    <constraint firstItem="PZs-aG-HxB" firstAttribute="centerY" secondItem="W86-Bt-fy6" secondAttribute="centerY" id="hXU-CP-ESN"/>
                     <constraint firstItem="duh-t0-dB9" firstAttribute="centerY" secondItem="MJ3-z4-nTj" secondAttribute="centerY" id="hlm-jd-5tZ"/>
                     <constraint firstItem="v2c-Ce-h6b" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="i41-Hc-yZc"/>
                     <constraint firstItem="y7z-oB-c4a" firstAttribute="leading" secondItem="HBc-pQ-bXP" secondAttribute="trailing" constant="4" id="kDl-Hk-lZA"/>
@@ -165,7 +173,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btnSaved" destination="W86-Bt-fy6" id="3ld-QH-U52"/>
                 <outlet property="img" destination="jOU-bv-ahK" id="B9z-Y3-BkZ"/>
+                <outlet property="indicator" destination="PZs-aG-HxB" id="49f-os-TRm"/>
                 <outlet property="lbAddress" destination="y7z-oB-c4a" id="JSi-Hg-8as"/>
                 <outlet property="lbArea" destination="tvZ-sb-mtp" id="1ae-nK-OQl"/>
                 <outlet property="lbDateTime" destination="MJ3-z4-nTj" id="ERA-a0-5QP"/>

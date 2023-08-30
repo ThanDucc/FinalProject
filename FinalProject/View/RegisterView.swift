@@ -31,6 +31,10 @@ class RegisterView: UIViewController {
         setAttributeTextField(textField: tfPassword)
         setAttributeTextField(textField: tfConfirmPassword)
         
+        tfEmail.delegate = self
+        tfPassword.delegate = self
+        tfConfirmPassword.delegate = self
+        
     }
     
     func setAttributeTextField(textField: UITextField) {
@@ -42,10 +46,62 @@ class RegisterView: UIViewController {
     var close: (() -> Void)?
 
     @IBAction func btnRegisterClicked(_ sender: Any) {
-        MainScreen.hasAccount = true
-        lbStatus.text = "Đăng kí thành công!"
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
-            self.close?()
-        })
+        uploadDataToPHP()
+    }
+    
+    func uploadDataToPHP() {
+        let requestURL = URL(string: "http://192.168.1.106/final_project/register.php")!
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "POST"
+        
+        if let username = tfEmail.text, !username.isEmpty,
+           let password = tfPassword.text, !password.isEmpty,
+           let confirmPass = tfConfirmPassword.text, !confirmPass.isEmpty {
+            
+            if password != confirmPass {
+                lbStatus.text = "Mật khẩu không khớp!"
+            } else {
+                let phoneNumber = "username=\(username)&&password=\(password)"
+                request.httpBody = phoneNumber.data(using: String.Encoding.utf8)
+                
+                let task = URLSession.shared.uploadTask(with: request, from: request.httpBody!) { data, response, error in
+                    DispatchQueue.main.async { [self] in
+                        if let response = String(data: data ?? Data(), encoding: .utf8) {
+                            switch response {
+                            case "Connection Error":
+                                lbStatus.text = "Lỗi kết nối, vui lòng kiểm tra lại!"
+                                
+                            case "Username is used":
+                                lbStatus.text = "Tên tài khoản đã tồn tại!"
+                                
+                            default:
+                                lbStatus.text = "Đăng kí thành công!"
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                                    MainScreen.hasAccount = true
+                                    Constant.userId = response
+                                    UserDefaults.standard.set(response, forKey: "userId")
+                                    self.close?()
+                                })
+                            }
+                        }
+                    }
+                    
+                }
+                task.resume()
+            }
+            
+        } else {
+            lbStatus.text = "Bạn nhập thiếu thông tin!"
+        }
+        
+        
+    }
+}
+
+extension RegisterView: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
