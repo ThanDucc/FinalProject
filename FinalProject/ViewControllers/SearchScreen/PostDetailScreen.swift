@@ -154,7 +154,7 @@ class PostDetailScreen: UIViewController {
     }
     
     func getInfor() {
-        let requestURL = URL(string: "http://192.168.1.106/final_project/getUserInfor.php")!
+        let requestURL = URL(string: Constant.domain + "final_project/getUserInfor.php")!
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
 
@@ -213,13 +213,21 @@ class PostDetailScreen: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(backButtonTapped))
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(shareButtonTapped))
         
         MainScreen.tabbar?.tabBar.isHidden = true
     }
     
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func shareButtonTapped() {
+        if !isEditing, let url = self.url {
+            let items = [url]
+            let activity = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            present(activity, animated: true)
+        }
     }
     
     func loadLargeImage() {
@@ -272,9 +280,9 @@ class PostDetailScreen: UIViewController {
         
         switch save {
         case .insert:
-            requestURL = URL(string: "http://192.168.1.106/final_project/insertSaved.php")!
+            requestURL = URL(string: Constant.domain + "final_project/insertSaved.php")!
         case .remove:
-            requestURL = URL(string: "http://192.168.1.106/final_project/removeSaved.php")!
+            requestURL = URL(string: Constant.domain + "final_project/removeSaved.php")!
         }
         
         guard let requestURL = requestURL else {
@@ -360,7 +368,7 @@ class PostDetailScreen: UIViewController {
     }
     
     func removePost() {
-        let requestURL = URL(string: "http://192.168.1.106/final_project/removeMyPost.php")
+        let requestURL = URL(string: Constant.domain + "final_project/removeMyPost.php")
         
         guard let requestURL = requestURL else {
             return

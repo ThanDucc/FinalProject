@@ -10,6 +10,8 @@ import UIKit
 
 class Constant {
     
+    public static let domain = "http://192.168.1.106/"
+    
     public static let originURL = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-"
     
     public static let defaultSearchMenu = ["Chọn thành phố", "Chọn quận, huyện", "Chọn xã, phường"]

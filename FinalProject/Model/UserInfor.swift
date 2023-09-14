@@ -9,7 +9,7 @@ import Foundation
 
 class UserInfor: Codable {
     
-    internal init(name: String? = nil, phone_number: String? = nil, email: String? = nil, userId: String? = nil, date_of_birth: String? = nil, career: String? = nil, address: String? = nil, price: String? = nil, area: String? = nil, productId_saved: String? = nil) {
+    internal init(name: String? = nil, phone_number: String? = nil, email: String? = nil, userId: String? = nil, date_of_birth: String? = nil, career: String? = nil, address: String? = nil, price: String? = nil, area: String? = nil) {
         self.name = name
         self.phone_number = phone_number
         self.email = email
@@ -19,7 +19,6 @@ class UserInfor: Codable {
         self.address = address
         self.price = price
         self.area = area
-        self.productId_saved = productId_saved
     }
 
     var name: String?
@@ -31,6 +30,5 @@ class UserInfor: Codable {
     var address: String?
     var price: String?
     var area: String?
-    var productId_saved: String?
 
 }

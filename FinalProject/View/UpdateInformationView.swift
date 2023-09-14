@@ -66,6 +66,22 @@ class UpdateInformationView: UIViewController {
         tfMaxArea.delegate = self
         
         getInfor()
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .inline
+        
+        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
+        
+        tfBirthOfDate.inputView = datePicker
+    
+    }
+    
+    @objc func dateChange(datePicker: UIDatePicker) {
+        tfBirthOfDate.endEditing(true)
+        let formatDate = DateFormatter()
+        formatDate.dateFormat = "dd/MM/YYYY"
+        tfBirthOfDate.text = formatDate.string(from: datePicker.date)
     }
     
     func setAttributeTextView(view: UIView) {
@@ -75,7 +91,7 @@ class UpdateInformationView: UIViewController {
     }
     
     func getInfor() {
-        let requestURL = URL(string: "http://192.168.1.106/final_project/getUserInfor.php")!
+        let requestURL = URL(string: Constant.domain + "final_project/getUserInfor.php")!
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
 
@@ -138,7 +154,7 @@ class UpdateInformationView: UIViewController {
     }
     
     func updateInfor() {
-        let requestURL = URL(string: "http://192.168.1.106/final_project/updateInfor.php")!
+        let requestURL = URL(string: Constant.domain + "final_project/updateInfor.php")!
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
         

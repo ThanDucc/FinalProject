@@ -43,7 +43,7 @@ class SettingScreenController: UIViewController {
     }
     
     func getInfor() {
-        let requestURL = URL(string: "http://192.168.1.106/final_project/getUserInfor.php")!
+        let requestURL = URL(string: Constant.domain + "final_project/getUserInfor.php")!
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
 

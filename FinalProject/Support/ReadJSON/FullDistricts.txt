@@ -1,0 +1,64 @@
+Chọn quận, huyện
+Chọn quận, huyện/ Bình Chánh/ Bình Tân/ Bình Thạnh/ Cần Giờ/ Củ Chi/ Gò Vấp/ Hóc Môn/ Nhà Bè/ Phú Nhuận/ Quận 1/ Quận 10/ Quận 11/ Quận 12/ Quận 2/ Quận 3/ Quận 4/ Quận 5/ Quận 6/ Quận 7/ Quận 8/ Quận 9/ Tân Bình/ Tân Phú/ Thủ Đức
+Chọn quận, huyện/ Ba Đình/ Ba Vì/ Bắc Từ Liêm/ Cầu Giấy/ Chương Mỹ/ Đan Phượng/ Đông Anh/ Đống Đa/ Gia Lâm/ Hà Đông/ Hai Bà Trưng/ Hoài Đức/ Hoàn Kiếm/ Hoàng Mai/ Long Biên/ Mê Linh/ Mỹ Đức/ Nam Từ Liêm/ Phú Xuyên/ Phúc Thọ/ Quốc Oai/ Sóc Sơn/ Sơn Tây/ Tây Hồ/ Thạch Thất/ Thanh Oai/ Thanh Trì/ Thanh Xuân/ Thường Tín/ Ứng Hòa
+Chọn quận, huyện/ Cẩm Lệ/ Hải Châu/ Hòa Vang/ Hoàng Sa/ Liên Chiểu/ Ngũ Hành Sơn/ Sơn Trà/ Thanh Khê
+Chọn quận, huyện/ Bàu Bàng/ Bến Cát/ Dầu Tiếng/ Dĩ An/ Phú Giáo/ Tân Uyên/ Thủ Dầu Một/ Thuận An
+Chọn quận, huyện/ Biên Hòa/ Cẩm Mỹ/ Định Quán/ Long Khánh/ Long Thành/ Nhơn Trạch/ Tân Phú/ Thống Nhất/ Trảng Bom/ Vĩnh Cửu/ Xuân Lộc
+Chọn quận, huyện/ Cam Lâm/ Cam Ranh/ Diên Khánh/ Khánh Sơn/ Khánh Vĩnh/ Nha Trang/ Ninh Hòa/ Trường Sa/ Vạn Ninh
+Chọn quận, huyện/ An Dương/ An Lão/ Bạch Long Vĩ/ Cát Hải/ Dương Kinh/ Đồ Sơn/ Hải An/ Hồng Bàng/ Kiến An/ Kiến Thụy/ Lê Chân/ Ngô Quyền/ Thủy Nguyên/ Tiên Lãng/ Vĩnh Bảo
+Chọn quận, huyện/ Bến Lức/ Cần Đước/ Cần Giuộc/ Châu Thành/ Đức Hòa/ Đức Huệ/ Kiến Tường/ Mộc Hóa/ Tân An/ Tân Hưng/ Tân Thạnh/ Tân Trụ/ Thạnh Hóa/ Thủ Thừa/ Vĩnh Hưng
+Chọn quận, huyện/ Bắc Trà My/ Duy Xuyên/ Đại Lộc/ Điện Bàn/ Đông Giang/ Hiệp Đức/ Hội An/ Nam Giang/ Nam Trà My/ Nông Sơn/ Núi Thành/ Phú Ninh/ Phước Sơn/ Quế Sơn/ Tam Kỳ/ Tây Giang/ Thăng Bình/ Tiên Phước
+Chọn quận, huyện/ Bà Rịa/ Châu Đức/ Côn Đảo/ Đất Đỏ/ Long Điền/ Tân Thành/ Vũng Tàu/ Xuyên Mộc
+Chọn quận, huyện/ Buôn Đôn/ Buôn Hồ/ Buôn Ma Thuột/ Cư Kuin/ Cư M'gar/ Ea H'Leo/ Ea Kar/ Ea Súp/ Krông Ana/ Krông Bông/ Krông Buk/ Krông Năng/ Krông Pắc/ Lăk/ M'Đrăk
+Chọn quận, huyện/ Thới Lai/ Bình Thủy/ Cái Răng/ Cờ Đỏ/ Ninh Kiều/ Ô Môn/ Phong Điền/ Thốt Nốt/ Vĩnh Thạnh
+Chọn quận, huyện/ Bắc Bình/ Đảo Phú Quý/ Đức Linh/ Hàm Tân/ Hàm Thuận Bắc/ Hàm Thuận Nam/ La Gi/ Phan Thiết/ Tánh Linh/ Tuy Phong
+Chọn quận, huyện/ Bảo Lâm/ Bảo Lộc/ Cát Tiên/ Di Linh/ Đạ Huoai/ Đà Lạt/ Đạ Tẻh/ Đam Rông/ Đơn Dương/ Đức Trọng/ Lạc Dương/ Lâm Hà
+Chọn quận, huyện/ A Lưới/ Huế/ Hương Thủy/ Hương Trà/ Nam Đông/ Phong Điền/ Phú Lộc/ Phú Vang/ Quảng Điền
+Chọn quận, huyện/ An Biên/ An Minh/ Châu Thành/ Giang Thành/ Giồng Riềng/ Gò Quao/ Hà Tiên/ Hòn Đất/ Kiên Hải/ Kiên Lương/ Phú Quốc/ Rạch Giá/ Tân Hiệp/ U minh Thượng/ Vĩnh Thuận
+Chọn quận, huyện/ Bắc Ninh/ Gia Bình/ Lương Tài/ Quế Võ/ Thuận Thành/ Tiên Du/ Từ Sơn/ Yên Phong
+Chọn quận, huyện/ Ba Chẽ/ Bình Liêu/ Cẩm Phả/ Cô Tô/ Đầm Hà/ Đông Triều/ Hạ Long/ Hải Hà/ Hoành Bồ/ Móng Cái/ Quảng Yên/ Tiên Yên/ Uông Bí/ Vân Đồn
+Chọn quận, huyện/ Bá Thước/ Bỉm Sơn/ Cẩm Thủy/ Đông Sơn/ Hà Trung/ Hậu Lộc/ Hoằng Hóa/ Lang Chánh/ Mường Lát/ Nga Sơn/ Ngọc Lặc/ Như Thanh/ Như Xuân/ Nông Cống/ Quan Hóa/ Quan Sơn/ Quảng Xương/ Sầm Sơn/ Thạch Thành/ Thanh Hóa/ Thiệu Hóa/ Thọ Xuân/ Thường Xuân/ Tĩnh Gia/ Triệu Sơn/ Vĩnh Lộc/ Yên Định
+Chọn quận, huyện/ Anh Sơn/ Con Cuông/ Cửa Lò/ Diễn Châu/ Đô Lương/ Hoàng Mai/ Hưng Nguyên/ Kỳ Sơn/ Nam Đàn/ Nghi Lộc/ Nghĩa Đàn/ Quế Phong/ Quỳ Châu/ Quỳ Hợp/ Quỳnh Lưu/ Tân Kỳ/ Thái Hòa/ Thanh Chương/ Tương Dương/ Vinh/ Yên Thành
+Chọn quận, huyện/ Bình Giang/ Cẩm Giàng/ Chí Linh/ Gia Lộc/ Hải Dương/ Kim Thành/ Kinh Môn/ Nam Sách/ Ninh Giang/ Thanh Hà/ Thanh Miện/ Tứ Kỳ
+Chọn quận, huyện/ An Khê/ AYun Pa/ Chư Păh/ Chư Pưh/ Chư Sê/ ChưPRông/ Đăk Đoa/ Đăk Pơ/ Đức Cơ/ Ia Grai/ Ia Pa/ KBang/ Kông Chro/ Krông Pa/ Mang Yang/ Phú Thiện/ Plei Ku
+Chọn quận, huyện/ Bình Long/ Bù Đăng/ Bù Đốp/ Bù Gia Mập/ Chơn Thành/ Đồng Phú/ Đồng Xoài/ Hớn Quản/ Lộc Ninh/ Phú Riềng/ Phước Long
+Chọn quận, huyện/ Ân Thi/ Hưng Yên/ Khoái Châu/ Kim Động/ Mỹ Hào/ Phù Cừ/ Tiên Lữ/ Văn Giang/ Văn Lâm/ Yên Mỹ
+Chọn quận, huyện/ An Lão/ An Nhơn/ Hoài Ân/ Hoài Nhơn/ Phù Cát/ Phù Mỹ/ Quy Nhơn/ Tây Sơn/ Tuy Phước/ Vân Canh/ Vĩnh Thạnh
+Chọn quận, huyện/ Cái Bè/ Cai Lậy/ Châu Thành/ Chợ Gạo/ Gò Công/ Gò Công Đông/ Gò Công Tây/ Huyện Cai Lậy/ Mỹ Tho/ Tân Phú Đông/ Tân Phước
+Chọn quận, huyện/ Đông Hưng/ Hưng Hà/ Kiến Xương/ Quỳnh Phụ/ Thái Bình/ Thái Thuỵ/ Tiền Hải/ Vũ Thư
+Chọn quận, huyện/ Bắc Giang/ Hiệp Hòa/ Lạng Giang/ Lục Nam/ Lục Ngạn/ Sơn Động/ Tân Yên/ Việt Yên/ Yên Dũng/ Yên Thế
+Chọn quận, huyện/ Cao Phong/ Đà Bắc/ Hòa Bình/ Kim Bôi/ Kỳ Sơn/ Lạc Sơn/ Lạc Thủy/ Lương Sơn/ Mai Châu/ Tân Lạc/ Yên Thủy
+Chọn quận, huyện/ An Phú/ Châu Đốc/ Châu Phú/ Châu Thành/ Chợ Mới/ Long Xuyên/ Phú Tân/ Tân Châu/ Thoại Sơn/ Tịnh Biên/ Tri Tôn
+Chọn quận, huyện/ Bình Xuyên/ Lập Thạch/ Phúc Yên/ Sông Lô/ Tam Dương/ Tam Đảo/ Vĩnh Tường/ Vĩnh Yên/ Yên Lạc
+Chọn quận, huyện/ Bến Cầu/ Châu Thành/ Dương Minh Châu/ Gò Dầu/ Hòa Thành/ Tân Biên/ Tân Châu/ Tây Ninh/ Trảng Bàng
+Chọn quận, huyện/ Đại Từ/ Định Hóa/ Đồng Hỷ/ Phổ Yên/ Phú Bình/ Phú Lương/ Sông Công/ Thái Nguyên/ Võ Nhai
+Chọn quận, huyện/ Bắc Hà/ Bảo Thắng/ Bảo Yên/ Bát Xát/ Lào Cai/ Mường Khương/ Sa Pa/ Văn Bàn/ Xi Ma Cai
+Chọn quận, huyện/ Giao Thủy/ Hải Hậu/ Mỹ Lộc/ Nam Định/ Nam Trực/ Nghĩa Hưng/ Trực Ninh/ Vụ Bản/ Xuân Trường/ Ý Yên
+Chọn quận, huyện/ Ba Tơ/ Bình Sơn/ Đức Phổ/ Lý Sơn/ Minh Long/ Mộ Đức/ Nghĩa Hành/ Quảng Ngãi/ Sơn Hà/ Sơn Tây/ Sơn Tịnh/ Tây Trà/ Trà Bồng/ Tư Nghĩa
+Chọn quận, huyện/ Ba Tri/ Bến Tre/ Bình Đại/ Châu Thành/ Chợ Lách/ Giồng Trôm/ Mỏ Cày Bắc/ Mỏ Cày Nam/ Thạnh Phú
+Chọn quận, huyện/ Cư Jút/ Dăk GLong/ Dăk Mil/ Dăk R'Lấp/ Dăk Song/ Gia Nghĩa/ Krông Nô/ Tuy Đức
+Chọn quận, huyện/ Cà Mau/ Cái Nước/ Đầm Dơi/ Năm Căn/ Ngọc Hiển/ Phú Tân/ Thới Bình/ Trần Văn Thời/ U Minh
+Chọn quận, huyện/ Bình Minh/ Bình Tân/ Long Hồ/ Mang Thít/ Tam Bình/ Trà Ôn/ Vĩnh Long/ Vũng Liêm
+Chọn quận, huyện/ Gia Viễn/ Hoa Lư/ Kim Sơn/ Nho Quan/ Ninh Bình/ Tam Điệp/ Yên Khánh/ Yên Mô
+Chọn quận, huyện/ Cẩm Khê/ Đoan Hùng/ Hạ Hòa/ Lâm Thao/ Phù Ninh/ Phú Thọ/ Tam Nông/ Tân Sơn/ Thanh Ba/ Thanh Sơn/ Thanh Thủy/ Việt Trì/ Yên Lập
+Chọn quận, huyện/ Bác Ái/ Ninh Hải/ Ninh Phước/ Ninh Sơn/ Phan Rang - Tháp Chàm/ Thuận Bắc/ Thuận Nam
+Chọn quận, huyện/ Đông Hòa/ Đồng Xuân/ Phú Hòa/ Sơn Hòa/ Sông Cầu/ Sông Hinh/ Tây Hòa/ Tuy An/ Tuy Hòa
+Chọn quận, huyện/ Bình Lục/ Duy Tiên/ Kim Bảng/ Lý Nhân/ Phủ Lý/ Thanh Liêm
+Chọn quận, huyện/ Cẩm Xuyên/ Can Lộc/ Đức Thọ/ Hà Tĩnh/ Hồng Lĩnh/ Hương Khê/ Hương Sơn/ Kỳ Anh/ Lộc Hà/ Nghi Xuân/ Thạch Hà/ Vũ Quang
+Chọn quận, huyện/ Cao Lãnh/ Châu Thành/ Hồng Ngự/ Huyện Cao Lãnh/ Huyện Hồng Ngự/ Lai Vung/ Lấp Vò/ Sa Đéc/ Tam Nông/ Tân Hồng/ Thanh Bình/ Tháp Mười
+Chọn quận, huyện/ Châu Thành/ Cù Lao Dung/ Kế Sách/ Long Phú/ Mỹ Tú/ Mỹ Xuyên/ Ngã Năm/ Sóc Trăng/ Thạnh Trị/ Trần Đề/ Vĩnh Châu
+Chọn quận, huyện/ Đăk Glei/ Đăk Hà/ Đăk Tô/ Ia H'Drai/ Kon Plông/ Kon Rẫy/ KonTum/ Ngọc Hồi/ Sa Thầy/ Tu Mơ Rông
+Chọn quận, huyện/ Ba Đồn/ Bố Trạch/ Đồng Hới/ Lệ Thủy/ Minh Hóa/ Quảng Ninh/ Quảng Trạch/ Tuyên Hóa
+Chọn quận, huyện/ Cam Lộ/ Đa Krông/ Đảo Cồn cỏ/ Đông Hà/ Gio Linh/ Hải Lăng/ Hướng Hóa/ Quảng Trị/ Triệu Phong/ Vĩnh Linh
+Chọn quận, huyện/ Càng Long/ Cầu Kè/ Cầu Ngang/ Châu Thành/ Duyên Hải/ Tiểu Cần/ Trà Cú/ Trà Vinh
+Chọn quận, huyện/ Châu Thành/ Châu Thành A/ Long Mỹ/ Ngã Bảy/ Phụng Hiệp/ Vị Thanh/ Vị Thủy
+Chọn quận, huyện/ Bắc Yên/ Mai Sơn/ Mộc Châu/ Mường La/ Phù Yên/ Quỳnh Nhai/ Sơn La/ Sông Mã/ Sốp Cộp/ Thuận Châu/ Vân Hồ/ Yên Châu
+Chọn quận, huyện/ Bạc Liêu/ Đông Hải/ Giá Rai/ Hòa Bình/ Hồng Dân/ Phước Long/ Vĩnh Lợi
+Chọn quận, huyện/ Lục Yên/ Mù Cang Chải/ Nghĩa Lộ/ Trạm Tấu/ Trấn Yên/ Văn Chấn/ Văn Yên/ Yên Bái/ Yên Bình
+Chọn quận, huyện/ Chiêm Hóa/ Hàm Yên/ Lâm Bình/ Na Hang/ Sơn Dương/ Tuyên Quang/ Yên Sơn
+Chọn quận, huyện/ Điện Biên/ Điện Biên Đông/ Điện Biên Phủ/ Mường Ảng/ Mường Chà/ Mường Lay/ Mường Nhé/ Nậm Pồ/ Tủa Chùa/ Tuần Giáo
+Chọn quận, huyện/ Lai Châu/ Mường Tè/ Nậm Nhùn/ Phong Thổ/ Sìn Hồ/ Tam Đường/ Tân Uyên/ Than Uyên
+Chọn quận, huyện/ Bắc Sơn/ Bình Gia/ Cao Lộc/ Chi Lăng/ Đình Lập/ Hữu Lũng/ Lạng Sơn/ Lộc Bình/ Tràng Định/ Văn Lãng/ Văn Quan
+Chọn quận, huyện/ Bắc Mê/ Bắc Quang/ Đồng Văn/ Hà Giang/ Hoàng Su Phì/ Mèo Vạc/ Quản Bạ/ Quang Bình/ Vị Xuyên/ Xín Mần/ Yên Minh
+Chọn quận, huyện/ Ba Bể/ Bắc Kạn/ Bạch Thông/ Chợ Đồn/ Chợ Mới/ Na Rì/ Ngân Sơn/ Pác Nặm
+Chọn quận, huyện/ Bảo Lạc/ Bảo Lâm/ Cao Bằng/ Hạ Lang/ Hà Quảng/ Hòa An/ Nguyên Bình/ Phục Hòa/ Quảng Uyên/ Thạch An/ Thông Nông/ Trà Lĩnh/ Trùng Khánh

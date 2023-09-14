@@ -10,11 +10,10 @@ import Foundation
 class GetFullAddress {
     
     public static var fullAddress: FullAddress?
-    public static var fullWardToCheck: [String] = []
     
     let fileName = "FullAddress"
             
-    func getData(completion: @escaping(Bool) -> Void) {
+    func getData() {
         let url = Bundle.main.url(forResource: fileName, withExtension: ".txt")
         DispatchQueue.global().async {
             do {
@@ -22,7 +21,6 @@ class GetFullAddress {
                 let resultData = try? JSONDecoder().decode(FullAddress.self, from: data)
                 DispatchQueue.main.async {
                     GetFullAddress.fullAddress = resultData
-                    completion(true)
                 }
             } catch {
                 print("Error to parse JSON")
@@ -38,18 +36,6 @@ class GetFullAddress {
         } catch {
             print("Lỗi khi đọc file: \(error)")
             return nil
-        }
-    }
-    
-    func getFullWardsToCheck() {
-        DispatchQueue.global().async {
-            for i in 0..<GetFullAddress.fullAddress!.count {
-                for j in 0..<GetFullAddress.fullAddress![i].districts.count {
-                    for k in 0..<GetFullAddress.fullAddress![i].districts[j].wards.count {
-                        GetFullAddress.fullWardToCheck.append(GetFullAddress.fullAddress![i].districts[j].wards[k].p + " " + GetFullAddress.fullAddress![i].districts[j].wards[k].name)
-                    }
-                }
-            }
         }
     }
     

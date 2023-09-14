@@ -67,9 +67,6 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="5vc-M4-fFb">
-                                                <rect key="frame" x="195.66666666666666" y="160" width="37" height="90"/>
-                                            </activityIndicatorView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKc-UW-w1x">
                                                 <rect key="frame" x="0.0" y="410" width="428" height="429"/>
                                                 <subviews>
@@ -372,6 +369,9 @@
                                                     <constraint firstItem="dMw-uq-Psf" firstAttribute="trailing" secondItem="DQS-Ne-Jw8" secondAttribute="trailing" id="y3W-wS-X03"/>
                                                 </constraints>
                                             </view>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="5vc-M4-fFb">
+                                                <rect key="frame" x="195.66666666666666" y="395.66666666666669" width="37" height="37"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -380,11 +380,9 @@
                                             <constraint firstAttribute="trailing" secondItem="iKc-UW-w1x" secondAttribute="trailing" id="P0e-Eb-VyC"/>
                                             <constraint firstItem="Tfq-00-ODL" firstAttribute="leading" secondItem="og9-Em-i91" secondAttribute="leading" id="WSY-4c-aev"/>
                                             <constraint firstItem="dwg-nU-CMT" firstAttribute="top" secondItem="og9-Em-i91" secondAttribute="top" id="Wdi-mV-Dsp"/>
-                                            <constraint firstItem="5vc-M4-fFb" firstAttribute="top" secondItem="og9-Em-i91" secondAttribute="top" constant="160" id="YX7-Uo-Hvp"/>
                                             <constraint firstAttribute="bottom" secondItem="iKc-UW-w1x" secondAttribute="bottom" id="ba4-p1-VFr"/>
                                             <constraint firstItem="dwg-nU-CMT" firstAttribute="leading" secondItem="og9-Em-i91" secondAttribute="leading" constant="4" id="biC-o5-8nl"/>
                                             <constraint firstAttribute="trailing" secondItem="dwg-nU-CMT" secondAttribute="trailing" constant="4" id="dIc-Eu-s6d"/>
-                                            <constraint firstItem="Tfq-00-ODL" firstAttribute="bottom" secondItem="5vc-M4-fFb" secondAttribute="bottom" constant="160" id="eP8-PA-gqy"/>
                                             <constraint firstItem="SY6-Hb-Utl" firstAttribute="centerX" secondItem="dwg-nU-CMT" secondAttribute="centerX" id="gga-SU-7Bh"/>
                                             <constraint firstItem="5vc-M4-fFb" firstAttribute="centerX" secondItem="og9-Em-i91" secondAttribute="centerX" id="jVE-KP-9TR"/>
                                             <constraint firstAttribute="trailing" secondItem="Tfq-00-ODL" secondAttribute="trailing" id="kyX-jO-BYB"/>
@@ -501,6 +499,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="oIo-08-dVe" secondAttribute="trailing" constant="40" id="p0V-Yd-nBP"/>
                             <constraint firstItem="OaM-Cp-Tev" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="rXL-3l-1g8"/>
                             <constraint firstItem="WKl-fE-ybR" firstAttribute="top" secondItem="OaM-Cp-Tev" secondAttribute="bottom" constant="15" id="sfA-Yf-IR4"/>
+                            <constraint firstItem="5vc-M4-fFb" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" constant="-50" id="ubY-PR-1rM"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="NjD-gN-21i" secondAttribute="trailing" id="v6i-rC-Gf7"/>
                         </constraints>
                     </view>

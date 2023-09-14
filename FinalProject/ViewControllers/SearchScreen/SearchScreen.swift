@@ -283,7 +283,7 @@ class SearchScreen: UIViewController {
         loadingIndicator.startAnimating()
         
         
-        let requestURL = URL(string: "http://192.168.1.106/final_project/getPostData.php")!
+        let requestURL = URL(string: Constant.domain + "final_project/getPostData.php")!
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
         
@@ -421,7 +421,7 @@ extension SearchScreen: UITableViewDataSource, UITableViewDelegate {
     }
     
     func checkSaved(productId: String, completion: @escaping (Bool) -> Void) {
-        let requestURL = URL(string: "http://192.168.1.106/final_project/checkSaved.php")!
+        let requestURL = URL(string: Constant.domain + "final_project/checkSaved.php")!
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
         

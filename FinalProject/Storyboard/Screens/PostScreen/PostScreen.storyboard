@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="106.5" width="393" height="696.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r2M-PI-qoZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="590"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="565"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tiêu đề" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7c-Y5-rvx">
                                                 <rect key="frame" x="16" y="0.0" width="48.5" height="17"/>
@@ -146,12 +146,6 @@
                                                     <action selector="btnCompleteClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="46U-tB-342"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fq2-RN-y0d">
-                                                <rect key="frame" x="196.5" y="560" width="0.0" height="0.0"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <color key="textColor" systemColor="systemRedColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -162,9 +156,7 @@
                                             <constraint firstItem="zSm-dy-lgX" firstAttribute="centerY" secondItem="gaJ-Dy-2WH" secondAttribute="centerY" id="6Sr-ry-Jw0"/>
                                             <constraint firstItem="gaJ-Dy-2WH" firstAttribute="top" secondItem="3CT-Dg-Jho" secondAttribute="bottom" constant="12" id="6Tn-3r-n1X"/>
                                             <constraint firstItem="d7c-Y5-rvx" firstAttribute="top" secondItem="r2M-PI-qoZ" secondAttribute="top" id="A5D-rq-7Su"/>
-                                            <constraint firstAttribute="bottom" secondItem="fq2-RN-y0d" secondAttribute="bottom" constant="30" id="Bd9-7h-py9"/>
                                             <constraint firstItem="gm9-iJ-wM6" firstAttribute="top" secondItem="IK2-hh-8Ht" secondAttribute="bottom" constant="30" id="BnT-xy-htx"/>
-                                            <constraint firstItem="fq2-RN-y0d" firstAttribute="centerX" secondItem="r2M-PI-qoZ" secondAttribute="centerX" id="C80-yS-wzM"/>
                                             <constraint firstItem="f9O-9h-lXc" firstAttribute="centerY" secondItem="4bp-2x-dut" secondAttribute="centerY" id="CIU-zn-3em"/>
                                             <constraint firstItem="iHn-9J-F9N" firstAttribute="top" secondItem="VUG-Ns-VTC" secondAttribute="bottom" constant="12" id="Cci-d4-So0"/>
                                             <constraint firstItem="3CT-Dg-Jho" firstAttribute="centerY" secondItem="sY6-sk-1ZF" secondAttribute="centerY" id="D79-Ld-1Nv"/>
@@ -179,10 +171,10 @@
                                             <constraint firstItem="4bp-2x-dut" firstAttribute="leading" secondItem="f9O-9h-lXc" secondAttribute="trailing" constant="12" id="Sor-0f-7HZ"/>
                                             <constraint firstItem="Pcy-NV-LKA" firstAttribute="centerY" secondItem="sY6-sk-1ZF" secondAttribute="centerY" id="VZv-0T-7j3"/>
                                             <constraint firstItem="Pxd-ff-Diz" firstAttribute="top" secondItem="eja-2r-xDo" secondAttribute="bottom" constant="12" id="VsK-8e-lRD"/>
+                                            <constraint firstAttribute="bottom" secondItem="gm9-iJ-wM6" secondAttribute="bottom" constant="30" id="WF3-D7-5Jj"/>
                                             <constraint firstItem="zSm-dy-lgX" firstAttribute="leading" secondItem="gaJ-Dy-2WH" secondAttribute="trailing" constant="12" id="WzG-b6-xKu"/>
                                             <constraint firstItem="d7c-Y5-rvx" firstAttribute="leading" secondItem="r2M-PI-qoZ" secondAttribute="leading" constant="16" id="Xw5-kB-iVJ"/>
                                             <constraint firstItem="eja-2r-xDo" firstAttribute="top" secondItem="d7c-Y5-rvx" secondAttribute="bottom" constant="12" id="bfr-0f-XP4"/>
-                                            <constraint firstItem="fq2-RN-y0d" firstAttribute="top" secondItem="gm9-iJ-wM6" secondAttribute="bottom" constant="25" id="dgs-Rq-W8u"/>
                                             <constraint firstItem="gm9-iJ-wM6" firstAttribute="centerX" secondItem="r2M-PI-qoZ" secondAttribute="centerX" id="foT-Ld-Pcs"/>
                                             <constraint firstItem="gaJ-Dy-2WH" firstAttribute="leading" secondItem="i7q-By-MY8" secondAttribute="trailing" constant="12" id="iDG-KV-QlP"/>
                                             <constraint firstItem="VUG-Ns-VTC" firstAttribute="trailing" secondItem="eja-2r-xDo" secondAttribute="trailing" id="iRp-jk-OcF"/>
@@ -225,7 +217,6 @@
                     <connections>
                         <outlet property="imgAddPhoto" destination="IK2-hh-8Ht" id="xM1-Ak-6ei"/>
                         <outlet property="lbArea" destination="zSm-dy-lgX" id="mSK-cZ-Dfz"/>
-                        <outlet property="lbStatus" destination="fq2-RN-y0d" id="cVc-CR-iji"/>
                         <outlet property="scrollView" destination="hz8-yB-zYv" id="heO-LS-80n"/>
                         <outlet property="tfAddress" destination="Pxd-ff-Diz" id="0yK-rZ-Tka"/>
                         <outlet property="tfArea" destination="gaJ-Dy-2WH" id="Udd-fE-Uhp"/>
@@ -249,9 +240,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

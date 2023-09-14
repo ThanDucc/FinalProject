@@ -100,9 +100,9 @@ class PostCell: UITableViewCell {
         
         switch save {
         case .insert:
-            requestURL = URL(string: "http://192.168.1.106/final_project/insertSaved.php")!
+            requestURL = URL(string: Constant.domain + "final_project/insertSaved.php")!
         case .remove:
-            requestURL = URL(string: "http://192.168.1.106/final_project/removeSaved.php")!
+            requestURL = URL(string: Constant.domain + "final_project/removeSaved.php")!
         }
         
         guard let requestURL = requestURL else {

@@ -13,6 +13,8 @@ class LibraryScreen: UIViewController {
     
     @IBOutlet weak var clMyPost: UICollectionView!
     
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
     var postSaved: [Post] = []
     
     var myPost: [Post] = []
@@ -21,6 +23,8 @@ class LibraryScreen: UIViewController {
     
     @IBOutlet weak var heightConstraintCollection: NSLayoutConstraint!
         
+    @IBOutlet weak var heightConstraintTable: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,7 +57,7 @@ class LibraryScreen: UIViewController {
     }
     
     func getPostSaved() {
-        let requestURL = URL(string: "http://192.168.1.106/final_project/getPostSaved.php")!
+        let requestURL = URL(string: Constant.domain + "final_project/getPostSaved.php")!
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
 
@@ -77,6 +81,9 @@ class LibraryScreen: UIViewController {
                             } else {
                                 tbPostSaved.isHidden = false
                                 tbPostSaved.reloadData()
+                                indicator.stopAnimating()
+            
+                                heightConstraintTable.constant = CGFloat(149 * postSaved.count)
                             }
                         }
                     }
@@ -88,7 +95,7 @@ class LibraryScreen: UIViewController {
     }
     
     func getMyPost() {
-        let requestURL = URL(string: "http://192.168.1.106/final_project/getMyPost.php")!
+        let requestURL = URL(string: Constant.domain + "final_project/getMyPost.php")!
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
 

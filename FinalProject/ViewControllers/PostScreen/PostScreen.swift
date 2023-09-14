@@ -22,9 +22,7 @@ class PostScreen: UIViewController {
     
     @IBOutlet weak var tfAddress: UITextField!
     @IBOutlet weak var imgAddPhoto: UIImageView!
-    
-    @IBOutlet weak var lbStatus: UILabel!
-    
+        
     var edit = false
     
     var post: Post?
@@ -132,23 +130,14 @@ class PostScreen: UIViewController {
     
     @IBAction func btnCompleteClicked(_ sender: Any) {
         if tfAddress.text?.isEmpty ?? false || tfArea.text?.isEmpty ?? false || tfPrice.text?.isEmpty ?? false || tvTitle.text?.isEmpty ?? false || tfExpirationDate.text?.isEmpty ?? false || tvDescription.text?.isEmpty ?? false {
-            lbStatus.text = "Bạn nhập thiếu thông tin!"
+            showStatus(message: "Bạn nhập thiếu thông tin!")
         } else {
-            lbStatus.text = ""
             
             let message = (!edit) ? "Bạn có chắc muốn đăng bài viết này không?" : "Bạn có chắc đã chỉnh sửa hoàn tất?"
         
             let alert = UIAlertController(title: "Xác nhận", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler: { [self] _ in
                 insertPost()
-                
-                if edit {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                        self.navigationController?.popToRootViewController(animated: true)
-                    })
-                } else {
-                    reset()
-                }
             }))
             alert.addAction(UIAlertAction(title: "Huỷ bỏ", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
@@ -159,9 +148,9 @@ class PostScreen: UIViewController {
         var requestURL = URL(string: "")
         
         if !edit {
-            requestURL = URL(string: "http://192.168.1.106/final_project/insertPost.php")!
+            requestURL = URL(string: Constant.domain + "final_project/insertPost.php")!
         } else {
-            requestURL = URL(string: "http://192.168.1.106/final_project/updateMyPost.php")!
+            requestURL = URL(string: Constant.domain + "final_project/updateMyPost.php")!
         }
         
         guard let requestURL = requestURL else { return }
@@ -202,9 +191,9 @@ class PostScreen: UIViewController {
                         
                     default:
                         if !edit {
-                            lbStatus.text = "Đăng bài viết thành công!"
+                            showStatus(message: "Đăng bài viết thành công!")
                         } else {
-                            lbStatus.text = "Chỉnh sửa bài viết thành công!"
+                            showStatus(message: "Chỉnh sửa bài viết thành công!")
                         }
                         
                     }
@@ -213,6 +202,19 @@ class PostScreen: UIViewController {
             
         }
         task.resume()
+    }
+    
+    func showStatus(message: String) {
+        let alert = UIAlertController(title: "Thông báo", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Đồng ý", style: .cancel, handler: { _ in
+            if self.edit {
+                self.navigationController?.popToRootViewController(animated: true)
+            } else {
+                self.reset()
+            }
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
     
 }
