@@ -15,10 +15,8 @@ class UpdateInformationView: UIViewController {
     @IBOutlet weak var tfPhoneNumber: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfAddress: UITextField!
-    @IBOutlet weak var tfMinPrice: UITextField!
     @IBOutlet weak var tfMaxPrice: UITextField!
     @IBOutlet weak var tfMinArea: UITextField!
-    @IBOutlet weak var tfMaxArea: UITextField!
     @IBOutlet weak var imgAddPhoto: UIImageView!
     
     @IBOutlet weak var lbArea: UILabel!
@@ -49,10 +47,8 @@ class UpdateInformationView: UIViewController {
         setAttributeTextView(view: tfPhoneNumber)
         setAttributeTextView(view: tfEmail)
         setAttributeTextView(view: tfAddress)
-        setAttributeTextView(view: tfMinPrice)
         setAttributeTextView(view: tfMaxPrice)
         setAttributeTextView(view: tfMinArea)
-        setAttributeTextView(view: tfMaxArea)
         
         tfName.delegate = self
         tfBirthOfDate.delegate = self
@@ -60,10 +56,8 @@ class UpdateInformationView: UIViewController {
         tfPhoneNumber.delegate = self
         tfEmail.delegate = self
         tfAddress.delegate = self
-        tfMinPrice.delegate = self
         tfMaxPrice.delegate = self
         tfMinArea.delegate = self
-        tfMaxArea.delegate = self
         
         getInfor()
         
@@ -119,18 +113,8 @@ class UpdateInformationView: UIViewController {
                                 tfPhoneNumber.text = userInfor?.phone_number ?? ""
                                 tfEmail.text = userInfor?.email ?? ""
                                 tfAddress.text = userInfor?.address ?? ""
-
-                                let price = userInfor?.price ?? ""
-                                if price != "" {
-                                    tfMinPrice.text = price.components(separatedBy: " - ")[0]
-                                    tfMaxPrice.text = price.components(separatedBy: " - ")[1]
-                                }
-
-                                let area = userInfor?.area ?? ""
-                                if area != "" {
-                                    tfMinArea.text = area.components(separatedBy: " - ")[0]
-                                    tfMaxArea.text = area.components(separatedBy: " - ")[1]
-                                }
+                                tfMaxPrice.text = userInfor?.price ?? ""
+                                tfMinArea.text = userInfor?.area ?? ""
                             }
                         }
                     }
@@ -164,10 +148,10 @@ class UpdateInformationView: UIViewController {
         let phone_number = tfPhoneNumber.text ?? ""
         let email = tfEmail.text ?? ""
         let address = tfAddress.text ?? ""
-        let price = (tfMinPrice.text ?? "") + " - " + (tfMaxPrice.text ?? "")
-        let area = (tfMinArea.text ?? "") + " - " + (tfMaxArea.text ?? "")
+        let maxPrice = tfMaxPrice.text ?? ""
+        let area = tfMinArea.text ?? ""
           
-        let data = "userId=\(Constant.userId)&&name=\(name)&&date_of_birth=\(date_of_birth)&&career=\(career)&&phone_number=\(phone_number)&&email=\(email)&&address=\(address)&&price=\(price)&&area=\(area)"
+        let data = "userId=\(Constant.userId)&&name=\(name)&&date_of_birth=\(date_of_birth)&&career=\(career)&&phone_number=\(phone_number)&&email=\(email)&&address=\(address)&&price=\(maxPrice)&&area=\(area)"
         
         request.httpBody = data.data(using: String.Encoding.utf8)
         

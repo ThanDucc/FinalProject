@@ -20,6 +20,8 @@ class HomeScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        RecommendPost.getRecommend(address: User.user.address ?? "")
+        
         setupUI()
         
         collection.register(UINib(nibName: "PostCollectionCell", bundle: nil), forCellWithReuseIdentifier: "PostCollectionCell")
@@ -29,7 +31,59 @@ class HomeScreen: UIViewController {
         indicator.startAnimating()
         indicator.isHidden = false
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification), name: Notification.Name("load suggestion post successful"), object: nil)
+        NotificationCenter.default.addObserver(forName: Notification.Name("load recommend successfully"), object: nil, queue: nil) { _ in
+            DispatchQueue.main.async { [self] in
+                collection.reloadData()
+                indicator.stopAnimating()
+                indicator.isHidden = true
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("reload"), object: nil, queue: nil) { _ in
+            User.getUserInfor {
+                RecommendPost.countInteraction { count in
+                    if count > 5 {
+                        if User.user.price == nil || User.user.address == nil || User.user.area == nil {
+                            CollaborativeFilter.getRecommend(number: 12, completion: {
+                                // Recommend.collaborativePost
+                                NotificationCenter.default.post(name: Notification.Name("load collaborative done"), object: nil)
+                            })
+                            print("collaborative")
+                        } else {
+                            // have information
+                            GetAllPost.getAllPost(completion: {
+                                ContentBasedFilter.getRecommend(numberOfRecommend: 6, completion: {
+                                    NotificationCenter.default.post(name: Notification.Name("load done"), object: nil)
+                                })
+                            })
+                
+                            CollaborativeFilter.getRecommend(number: 10, completion: {
+                                NotificationCenter.default.post(name: Notification.Name("load done"), object: nil)
+                            })
+                            print("hybrid")
+                        }
+                    } else {  // less than 5
+                        if User.user.price == nil || User.user.address == nil || User.user.area == nil {
+                            // less than 5 + no information
+                            RecommendPost.getRandomRecommend { postList in
+                                RecommendPost.recomendPost = postList
+                                NotificationCenter.default.post(name: Notification.Name("load random post done"), object: nil)
+                                print("random")
+                            }
+                        } else {
+                            // less than 5 + have information
+                            GetAllPost.getAllPost(completion: {
+                                ContentBasedFilter.getRecommend(numberOfRecommend: 8, completion: {
+                                    // Recommend.contentBasedpost
+                                    NotificationCenter.default.post(name: Notification.Name("load content based done"), object: nil)
+                                    print("content based")
+                                })
+                            })
+                        }
+                    }
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,12 +91,6 @@ class HomeScreen: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         
         MainScreen.tabbar?.tabBar.isHidden = false
-    }
-    
-    @objc func handleNotification(_ notification: Notification) {
-        collection.reloadData()
-        indicator.stopAnimating()
-        indicator.isHidden = true
     }
     
     private func setupUI() {
@@ -82,19 +130,19 @@ class HomeScreen: UIViewController {
 
 extension HomeScreen: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PostData.shared.suggestionPost.count > 10 ? 10 : PostData.shared.suggestionPost.count
+        return RecommendPost.recomendPost.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCollectionCell", for: indexPath) as? PostCollectionCell {
-            cell.lbTitle.text = PostData.shared.suggestionPost[indexPath.row].title
-            cell.lbArea.text = PostData.shared.suggestionPost[indexPath.row].area
-            cell.lbPrice.text = PostData.shared.suggestionPost[indexPath.row].price
-            cell.lbAddress.text = PostData.shared.suggestionPost[indexPath.row].address
+            cell.lbTitle.text = RecommendPost.recomendPost[indexPath.row].title
+            cell.lbArea.text = RecommendPost.recomendPost[indexPath.row].area
+            cell.lbPrice.text = RecommendPost.recomendPost[indexPath.row].price
+            cell.lbAddress.text = RecommendPost.recomendPost[indexPath.row].address
             
-            let year = PostData.shared.suggestionPost[indexPath.row].dateTime.components(separatedBy: "-")[0]
-            let month = PostData.shared.suggestionPost[indexPath.row].dateTime.components(separatedBy: "-")[1]
-            let day = PostData.shared.suggestionPost[indexPath.row].dateTime.components(separatedBy: "-")[2]
+            let year = RecommendPost.recomendPost[indexPath.row].dateTime.components(separatedBy: "-")[0]
+            let month = RecommendPost.recomendPost[indexPath.row].dateTime.components(separatedBy: "-")[1]
+            let day = RecommendPost.recomendPost[indexPath.row].dateTime.components(separatedBy: "-")[2]
             
             let dateTime = day + "/" + month + "/" + year
             
@@ -103,7 +151,7 @@ extension HomeScreen: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             cell.img.image = UIImage(named: "noImg") ?? UIImage()
                         
             DispatchQueue.global().async { 
-                if let url = URL(string: PostData.shared.suggestionPost[indexPath.row].linkImageCover ?? ""), let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) {
+                if let url = URL(string: RecommendPost.recomendPost[indexPath.row].linkImageCover ?? ""), let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) {
                     DispatchQueue.main.async {
                         cell.img.image = image
                     }
@@ -112,6 +160,11 @@ extension HomeScreen: UICollectionViewDelegate, UICollectionViewDataSource, UICo
                         cell.img.image = UIImage(named: "noImg") ?? UIImage()
                     }
                 }
+            }
+            
+            checkSaved(productId: RecommendPost.recomendPost[indexPath.row].productId) { saved in
+                RecommendPost.recomendPost[indexPath.row].saved = saved
+                cell.saved = RecommendPost.recomendPost[indexPath.row].saved
             }
 
             return cell
@@ -125,10 +178,57 @@ extension HomeScreen: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        GetUserInteraction.getUserInteraction(productId: RecommendPost.recomendPost[indexPath.row].productId, completion: { u in
+            if let userInteraction = u {
+                let number_of_click = (Int(userInteraction.number_of_click) ?? 0) + 1
+                userInteraction.number_of_click = String(number_of_click)
+                let rating = GetUserInteraction.calculateRating(numberOfClick: Double(number_of_click), saved: Double(userInteraction.saved) ?? 0, contacted: Double(userInteraction.contacted) ?? 0)
+                userInteraction.rating = String(rating)
+                
+                // updateDatabase
+                GetUserInteraction.updateUserInteraction(userInter: userInteraction)
+            } else {
+                let rating = GetUserInteraction.calculateRating(numberOfClick: 1, saved: 0, contacted: 0)
+                let userInteraction = UserInteraction(userId: Constant.userId, productId: RecommendPost.recomendPost[indexPath.row].productId, number_of_click: "1", saved: "0", contacted: "0", rating: String(rating))
+                
+                // add to database
+                GetUserInteraction.insertUserInteraction(userInter: userInteraction)
+            }
+            
+        })
+        
         let storyboard = UIStoryboard(name: "PostDetailScreen", bundle: nil)
         let detailScreen = storyboard.instantiateViewController(withIdentifier: "PostDetailScreen") as! PostDetailScreen
-        detailScreen.url = URL(string: PostData.shared.suggestionPost[indexPath.row].linkDetail)
+        detailScreen.url = URL(string: RecommendPost.recomendPost[indexPath.row].linkDetail)
+        detailScreen.saved = RecommendPost.recomendPost[indexPath.row].saved
+        detailScreen.productId = RecommendPost.recomendPost[indexPath.row].productId
         self.navigationController?.pushViewController(detailScreen, animated: true)
+    }
+    
+    
+    func checkSaved(productId: String, completion: @escaping (Bool) -> Void) {
+        let requestURL = URL(string: Constant.domain + "final_project/checkSaved.php")!
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "POST"
+        
+        let data = "userId=\(Constant.userId)&&productId=\(productId)"
+        
+        request.httpBody = data.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.uploadTask(with: request, from: request.httpBody!) { data, response, error in
+                if let response = String(data: data ?? Data(), encoding: .utf8) {
+                    DispatchQueue.main.async {
+                        switch response {
+                        case "true":
+                            completion(true)
+                        default:
+                            completion(false)
+                        }
+                    }
+                }
+            
+        }
+        task.resume()
     }
     
 }

@@ -81,6 +81,7 @@ class LoginView: UIViewController {
                                 MainScreen.hasAccount = true
                                 Constant.userId = response
                                 UserDefaults.standard.set(response, forKey: "userId")
+                                NotificationCenter.default.post(Notification(name: Notification.Name("reload"), object: nil, userInfo: nil))
                                 self.dismiss(animated: true, completion: nil)
                             })
                         }

@@ -20,6 +20,8 @@ class PostCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var btnSave: UIButton!
     
+    var saved = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

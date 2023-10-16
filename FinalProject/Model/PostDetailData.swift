@@ -42,9 +42,10 @@ class PostDetailData {
     
     func getDataDetail(url: URL, completion: @escaping (Bool) -> Void) {
         urlVideo = ""
-        
-        let html = try! String(contentsOf: url)
+    
         do {
+            let html = try String(contentsOf: url)
+            
             let doc = try SwiftSoup.parse(html)
             
             var imageArray: [String] = []

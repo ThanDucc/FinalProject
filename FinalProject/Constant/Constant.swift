@@ -10,7 +10,7 @@ import UIKit
 
 class Constant {
     
-    public static let domain = "http://192.168.1.106/"
+    public static let domain = "http://192.168.43.180/"
     
     public static let originURL = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-"
     
@@ -22,7 +22,7 @@ class Constant {
     
     public static var fullDistrics: [[String]] = []
     
-    public static let defaultFilterMenu = ["Lọc theo giá phòng", "Lọc theo diện tích", "Huỷ lọc"]
+    public static let defaultFilterMenu = ["Lọc theo giá phòng", "Lọc theo diện tích", "Đóng"]
     
     public static var userId = ""
     

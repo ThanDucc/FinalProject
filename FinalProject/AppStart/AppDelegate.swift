@@ -10,7 +10,6 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -25,12 +24,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        DispatchQueue.global().async {
-            PostData.shared.getSuggestionData(completion: {
-                DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: Notification.Name("load suggestion post successful"), object: nil)
+        User.getUserInfor {
+            RecommendPost.countInteraction { count in
+                if count > 5 {
+                    if User.user.price == nil || User.user.address == nil || User.user.area == nil {
+                        CollaborativeFilter.getRecommend(number: 12, completion: {
+                            // Recommend.collaborativePost
+                            NotificationCenter.default.post(name: Notification.Name("load collaborative done"), object: nil)
+                        })
+                        print("collaborative")
+                    } else {
+                        // have information
+                        GetAllPost.getAllPost(completion: {
+                            ContentBasedFilter.getRecommend(numberOfRecommend: 6, completion: {
+                                NotificationCenter.default.post(name: Notification.Name("load done"), object: nil)
+                            })
+                        })
+            
+                        CollaborativeFilter.getRecommend(number: 10, completion: {
+                            NotificationCenter.default.post(name: Notification.Name("load done"), object: nil)
+                        })
+                        print("hybrid")
+                    }
+                } else {  // less than 5
+                    if User.user.price == nil || User.user.address == nil || User.user.area == nil {
+                        // less than 5 + no information
+                        RecommendPost.getRandomRecommend { postList in
+                            RecommendPost.recomendPost = postList
+                            NotificationCenter.default.post(name: Notification.Name("load random post done"), object: nil)
+                            print("random")
+                        }
+                    } else {
+                        // less than 5 + have information
+                        GetAllPost.getAllPost(completion: {
+                            ContentBasedFilter.getRecommend(numberOfRecommend: 8, completion: {
+                                // Recommend.contentBasedpost
+                                NotificationCenter.default.post(name: Notification.Name("load content based done"), object: nil)
+                                print("content based")
+                            })
+                        })
+                    }
                 }
-            })
+            }
         }
         
         return true

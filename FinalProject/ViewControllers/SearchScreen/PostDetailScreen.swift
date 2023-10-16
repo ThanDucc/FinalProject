@@ -262,6 +262,26 @@ class PostDetailScreen: UIViewController {
                     print("Error")
                 }
             }
+            // trạng thái đã lưu lúc này là 1
+            
+            GetUserInteraction.getUserInteraction(productId: productId, completion: { u in
+                if let userInteraction = u {
+                    let saved = "1"
+                    userInteraction.saved = saved
+                    let rating = GetUserInteraction.calculateRating(numberOfClick: Double(userInteraction.number_of_click) ?? 0, saved: Double(userInteraction.saved) ?? 0, contacted: Double(userInteraction.contacted) ?? 0)
+                    userInteraction.rating = String(rating)
+                    
+                    // updateDatabase
+                    GetUserInteraction.updateUserInteraction(userInter: userInteraction)
+                } else {
+                    let rating = GetUserInteraction.calculateRating(numberOfClick: 0, saved: 1, contacted: 0)
+                    let userInteraction = UserInteraction(userId: Constant.userId, productId: self.productId, number_of_click: "0", saved: "1", contacted: "0", rating: String(rating))
+                    
+                    // add to database
+                    GetUserInteraction.insertUserInteraction(userInter: userInteraction)
+                }
+                
+            })
         } else {
             updateSaved(productId: productId, status: .remove) { [self] result in
                 if result {
@@ -270,6 +290,20 @@ class PostDetailScreen: UIViewController {
                     print("Error")
                 }
             }
+            
+            // đặt trạng thái đã lưu thành 0
+            
+            GetUserInteraction.getUserInteraction(productId: productId, completion: { u in
+                if let userInteraction = u {
+                    let saved = "0"
+                    userInteraction.saved = saved
+                    let rating = GetUserInteraction.calculateRating(numberOfClick: Double(userInteraction.number_of_click) ?? 0, saved: Double(userInteraction.saved) ?? 0, contacted: Double(userInteraction.contacted) ?? 0)
+                    userInteraction.rating = String(rating)
+                    
+                    // updateDatabase
+                    GetUserInteraction.updateUserInteraction(userInter: userInteraction)
+                }
+            })
         }
     }
     
@@ -322,6 +356,26 @@ class PostDetailScreen: UIViewController {
         task.resume()
     }
     
+    func contacted() {
+        GetUserInteraction.getUserInteraction(productId: productId, completion: { u in
+            if let userInteraction = u {
+                let contacted = "1"
+                userInteraction.contacted = contacted
+                let rating = GetUserInteraction.calculateRating(numberOfClick: Double(userInteraction.number_of_click) ?? 0, saved: Double(userInteraction.saved) ?? 0, contacted: Double(userInteraction.contacted) ?? 0)
+                userInteraction.rating = String(rating)
+                
+                // updateDatabase
+                GetUserInteraction.updateUserInteraction(userInter: userInteraction)
+            } else {
+                let rating = GetUserInteraction.calculateRating(numberOfClick: 0, saved: 1, contacted: 0)
+                let userInteraction = UserInteraction(userId: Constant.userId, productId: self.productId, number_of_click: "0", saved: "0", contacted: "1", rating: String(rating))
+                
+                // add to database
+                GetUserInteraction.insertUserInteraction(userInter: userInteraction)
+            }
+            
+        })
+    }
     
     @IBAction func btnCallClicked(_ sender: Any) {
         let phoneNumber = PostDetailData.shared.contactInfor?.phone_number
@@ -331,6 +385,8 @@ class PostDetailScreen: UIViewController {
                 UIApplication.shared.open(phoneCallURL, options: [:], completionHandler: nil)
             }
         }
+        
+        contacted()
     }
     
     @IBAction func btnMessageClicked(_ sender: Any) {
@@ -344,6 +400,8 @@ class PostDetailScreen: UIViewController {
                     print("Không thể mở ứng dụng Messages.")
                 }
             }
+            contacted()
+            
         } else {
             let storyboard = UIStoryboard(name: "PostScreen", bundle: nil)
             let updatePost = storyboard.instantiateViewController(withIdentifier: "PostScreen") as? PostScreen ?? PostScreen()

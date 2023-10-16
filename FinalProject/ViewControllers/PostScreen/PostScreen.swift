@@ -23,6 +23,12 @@ class PostScreen: UIViewController {
     @IBOutlet weak var tfAddress: UITextField!
     @IBOutlet weak var imgAddPhoto: UIImageView!
         
+    @IBOutlet weak var lbTitle: UILabel!
+    
+    @IBOutlet weak var viewStatus: UIView!
+    
+    @IBOutlet weak var switchStatus: UISwitch!
+    
     var edit = false
     
     var post: Post?
@@ -77,6 +83,11 @@ class PostScreen: UIViewController {
             
             tfExpirationDate.text = dateTime
             tvDescription.text = post?.linkDetail
+            
+            lbTitle.text = "Chỉnh sửa bài viết"
+            viewStatus.isHidden = false
+
+            switchStatus.isOn = ((post?.status ?? "") == "0") ? false : true
         }
     }
     
@@ -130,7 +141,7 @@ class PostScreen: UIViewController {
     
     @IBAction func btnCompleteClicked(_ sender: Any) {
         if tfAddress.text?.isEmpty ?? false || tfArea.text?.isEmpty ?? false || tfPrice.text?.isEmpty ?? false || tvTitle.text?.isEmpty ?? false || tfExpirationDate.text?.isEmpty ?? false || tvDescription.text?.isEmpty ?? false {
-            showStatus(message: "Bạn nhập thiếu thông tin!")
+            showStatus(message: "Bạn nhập thiếu thông tin!", lackInfor: true)
         } else {
             
             let message = (!edit) ? "Bạn có chắc muốn đăng bài viết này không?" : "Bạn có chắc đã chỉnh sửa hoàn tất?"
@@ -174,8 +185,16 @@ class PostScreen: UIViewController {
         
         var data = ""
         
+        var status = "1"
+        
+        if switchStatus.isOn {
+            status = "1"
+        } else {
+            status = "0"
+        }
+        
         if edit {
-            data = "userId=\(userId)&&address=\(address)&&area=\(area)&&price=\(price)&&dateTime=\(dateTime)&&title=\(title)&&linkDetail=\(linkDetail)&&productId=\(post!.productId)"
+            data = "userId=\(userId)&&address=\(address)&&area=\(area)&&price=\(price)&&dateTime=\(dateTime)&&title=\(title)&&linkDetail=\(linkDetail)&&productId=\(post!.productId)&&status=\(status)"
         } else {
             data = "userId=\(userId)&&address=\(address)&&area=\(area)&&price=\(price)&&dateTime=\(dateTime)&&title=\(title)&&linkDetail=\(linkDetail)"
         }
@@ -191,9 +210,9 @@ class PostScreen: UIViewController {
                         
                     default:
                         if !edit {
-                            showStatus(message: "Đăng bài viết thành công!")
+                            showStatus(message: "Đăng bài viết thành công!", lackInfor: false)
                         } else {
-                            showStatus(message: "Chỉnh sửa bài viết thành công!")
+                            showStatus(message: "Chỉnh sửa bài viết thành công!", lackInfor: false)
                         }
                         
                     }
@@ -204,13 +223,16 @@ class PostScreen: UIViewController {
         task.resume()
     }
     
-    func showStatus(message: String) {
+    func showStatus(message: String, lackInfor: Bool) {
         let alert = UIAlertController(title: "Thông báo", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Đồng ý", style: .cancel, handler: { _ in
             if self.edit {
                 self.navigationController?.popToRootViewController(animated: true)
             } else {
-                self.reset()
+                if !lackInfor {
+                    self.reset()
+                }
+                
             }
         }))
         

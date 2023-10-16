@@ -349,11 +349,7 @@ extension SearchScreen: UITextFieldDelegate {
 extension SearchScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if postData.count > 80 {
-            return 80
-        } else {
             return postData.count
-        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -412,6 +408,25 @@ extension SearchScreen: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        GetUserInteraction.getUserInteraction(productId: postData[indexPath.row].productId, completion: { u in
+            if let userInteraction = u {
+                let number_of_click = (Int(userInteraction.number_of_click) ?? 0) + 1
+                userInteraction.number_of_click = String(number_of_click)
+                let rating = GetUserInteraction.calculateRating(numberOfClick: Double(number_of_click), saved: Double(userInteraction.saved) ?? 0, contacted: Double(userInteraction.contacted) ?? 0)
+                userInteraction.rating = String(rating)
+                
+                // updateDatabase
+                GetUserInteraction.updateUserInteraction(userInter: userInteraction)
+            } else {
+                let rating = GetUserInteraction.calculateRating(numberOfClick: 1, saved: 0, contacted: 0)
+                let userInteraction = UserInteraction(userId: Constant.userId, productId: self.postData[indexPath.row].productId, number_of_click: "1", saved: "0", contacted: "0", rating: String(rating))
+                
+                // add to database
+                GetUserInteraction.insertUserInteraction(userInter: userInteraction)
+            }
+            
+        })
+        
         let storyboard = UIStoryboard(name: "PostDetailScreen", bundle: nil)
         let detailScreen = storyboard.instantiateViewController(withIdentifier: "PostDetailScreen") as! PostDetailScreen
         detailScreen.url = URL(string: postData[indexPath.row].linkDetail)

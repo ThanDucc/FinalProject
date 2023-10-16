@@ -10,7 +10,7 @@ import UIKit
 
 class Post: Codable {
     
-    internal init(title: String, price: String, area: String, address: String, dateTime: String, linkImageCover: String? = nil, linkDetail: String, productId: String, userId: String, saved: Bool = false) {
+    internal init(title: String, price: String, area: String, address: String, dateTime: String, linkImageCover: String? = nil, linkDetail: String, productId: String, userId: String, saved: Bool = false, status: String = "") {
         self.title = title
         self.price = price
         self.area = area
@@ -21,6 +21,7 @@ class Post: Codable {
         self.productId = productId
         self.userId = userId
         self.saved = saved
+        self.status = status
     }
     
     var title: String
@@ -34,9 +35,10 @@ class Post: Codable {
     var userId: String
     
     var saved = false
+    var status = ""
     
     enum CodingKeys: String, CodingKey {
-        case title, price, area, address, dateTime, linkImageCover, linkDetail, productId, userId, saved
+        case title, price, area, address, dateTime, linkImageCover, linkDetail, productId, userId, saved, status
     }
     
     required init(from decoder: Decoder) throws {
@@ -51,6 +53,7 @@ class Post: Codable {
         productId = try container.decode(String.self, forKey: .productId)
         userId = try container.decode(String.self, forKey: .userId)
         saved = try container.decodeIfPresent(Bool.self, forKey: .saved) ?? false
+        status = try container.decodeIfPresent(String.self, forKey: .status) ?? ""
     }
     
 }

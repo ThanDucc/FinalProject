@@ -78,6 +78,7 @@ class LibraryScreen: UIViewController {
                             postSaved = post ?? []
                             if postSaved.isEmpty {
                                 tbPostSaved.isHidden = true
+                                indicator.stopAnimating()
                             } else {
                                 tbPostSaved.isHidden = false
                                 tbPostSaved.reloadData()
@@ -242,6 +243,25 @@ extension LibraryScreen: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        GetUserInteraction.getUserInteraction(productId: postSaved[indexPath.row].productId, completion: { u in
+            if let userInteraction = u {
+                let number_of_click = (Int(userInteraction.number_of_click) ?? 0) + 1
+                userInteraction.number_of_click = String(number_of_click)
+                let rating = GetUserInteraction.calculateRating(numberOfClick: Double(number_of_click), saved: Double(userInteraction.saved) ?? 0, contacted: Double(userInteraction.contacted) ?? 0)
+                userInteraction.rating = String(rating)
+                
+                // update
+                GetUserInteraction.updateUserInteraction(userInter: userInteraction)
+            } else {
+                let rating = GetUserInteraction.calculateRating(numberOfClick: 1, saved: 0, contacted: 0)
+                let userInteraction = UserInteraction(userId: Constant.userId, productId: self.postSaved[indexPath.row].productId, number_of_click: "1", saved: "0", contacted: "0", rating: String(rating))
+                
+                // add to database
+                GetUserInteraction.insertUserInteraction(userInter: userInteraction)
+            }
+            
+        })
+        
         let storyboard = UIStoryboard(name: "PostDetailScreen", bundle: nil)
         let detailScreen = storyboard.instantiateViewController(withIdentifier: "PostDetailScreen") as? PostDetailScreen ?? PostDetailScreen()
         detailScreen.url = URL(string: postSaved[indexPath.row].linkDetail)

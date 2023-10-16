@@ -59,9 +59,25 @@ class PostCell: UITableViewCell {
                 }
                 completion()
             }
+            // đặt trạng thái đã lưu thành 0
+            
+            GetUserInteraction.getUserInteraction(productId: productId, completion: { u in
+                if let userInteraction = u {
+                    let saved = "0"
+                    userInteraction.saved = saved
+                    let rating = GetUserInteraction.calculateRating(numberOfClick: Double(userInteraction.number_of_click) ?? 0, saved: Double(userInteraction.saved) ?? 0, contacted: Double(userInteraction.contacted) ?? 0)
+                    userInteraction.rating = String(rating)
+                    
+                    // updateDatabase
+                    GetUserInteraction.updateUserInteraction(userInter: userInteraction)
+                }
+            })
         }
         
         if saved {
+            /**
+             nếu lưu thì thêm vào table
+             */
             updateSaved(productId: productId, status: .insert) { [self] result in
                 if result {
                     btnSaved.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
@@ -70,7 +86,32 @@ class PostCell: UITableViewCell {
                 }
                 self.savedClick?()
             }
+            
+            // trạng thái đã lưu lúc này là 1
+            
+            GetUserInteraction.getUserInteraction(productId: productId, completion: { u in
+                if let userInteraction = u {
+                    let saved = "1"
+                    userInteraction.saved = saved
+                    let rating = GetUserInteraction.calculateRating(numberOfClick: Double(userInteraction.number_of_click) ?? 0, saved: Double(userInteraction.saved) ?? 0, contacted: Double(userInteraction.contacted) ?? 0)
+                    userInteraction.rating = String(rating)
+                    
+                    // updateDatabase
+                    GetUserInteraction.updateUserInteraction(userInter: userInteraction)
+                } else {
+                    let rating = GetUserInteraction.calculateRating(numberOfClick: 0, saved: 1, contacted: 0)
+                    let userInteraction = UserInteraction(userId: Constant.userId, productId: self.productId, number_of_click: "0", saved: "1", contacted: "0", rating: String(rating))
+                    
+                    // add to database
+                    GetUserInteraction.insertUserInteraction(userInter: userInteraction)
+                }
+                
+            })
+            
         } else {
+            /**
+             nếu bỏ lưu thì xoá khỏi table
+             */
             if screen == .LibraryScreen {
                 let alert = UIAlertController(title: "Xác nhận", message: "Bạn có chắc muốn xoá khỏi danh sách đã lưu không?", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler: { _ in 
